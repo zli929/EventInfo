@@ -1,4 +1,6 @@
 class Api::V1::SessionsController < Devise::SessionsController
+  before_filter :authenticate_user_from_token!, only: [:destroy]
+  
   skip_before_filter :verify_authenticity_token,
                      :if => Proc.new { |c| c.request.format == 'application/json' }
 
@@ -13,7 +15,6 @@ class Api::V1::SessionsController < Devise::SessionsController
   end
 
   def destroy
-    warden.authenticate!(:scope => resource_name, :recall => "#{controller_path}#failure")
     current_user.update_column(:authentication_token, nil)
     render :status => 200,
            :json => { :success => true,

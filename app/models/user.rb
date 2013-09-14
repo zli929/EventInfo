@@ -1,9 +1,10 @@
 class User < ActiveRecord::Base
+  before_save :ensure_authentication_token
   include ActiveModel::ForbiddenAttributesProtection
   # :confirmable, 
   devise  :database_authenticatable, :registerable, :recoverable, :rememberable, 
-        :trackable, :validatable, :omniauthable, 
-        :omniauth_providers => [:facebook]
+          :trackable, :validatable, :omniauthable, 
+          :omniauth_providers => [:facebook]
 
   attr_accessor :name
 
@@ -20,7 +21,7 @@ class User < ActiveRecord::Base
   # Allows for a quick pull of the User's name without having to save said name
   after_initialize :get_name 
   def get_name
-  self.name = (first_name || "") + " " + (last_name || "")
+    self.name = (first_name || "") + " " + (last_name || "")
   end
 
   def password_validation_required?
@@ -51,7 +52,7 @@ class User < ActiveRecord::Base
           user.facebookuid = auth.uid
         else
           user = User.create(:first_name => first_name,
-                     :last_name => first_name,
+                     :last_name => last_name,
                      :facebookuid => uid,
                      :email => email,
                      :password => password_placeholder,
@@ -64,9 +65,26 @@ class User < ActiveRecord::Base
     user
   end
 
+  def skip_confirmation!
+      self.confirmed_at = Time.now
+  end
+  
+  def ensure_authentication_token
+    if authentication_token.blank?
+      self.authentication_token = generate_authentication_token
+    end
+  end
+    
   private
 
     def create_remember_token
       self.remember_token = SecureRandom.urlsafe_base64
+    end  
+    
+    def generate_authentication_token
+    loop do
+      token = Devise.friendly_token
+      break token unless User.where(authentication_token: token).first
     end
+  end
 end

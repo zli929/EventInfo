@@ -8,8 +8,8 @@ EventInfo::Application.routes.draw do
     match '/signin',  to: 'devise/sessions#new', via: [:get, :post]
     match '/signout', to: 'devise/sessions#destroy', via: :delete
   end
-
-=begin 
+ 
+  # Setting up Android Access
   namespace :api do
     namespace :v1 do
       devise_scope :user do
@@ -19,7 +19,6 @@ EventInfo::Application.routes.draw do
       end
     end
   end
-=end
   
   resources :users
   

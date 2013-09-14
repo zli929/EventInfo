@@ -7,14 +7,14 @@ class Api::V1::RegistrationsController < Devise::RegistrationsController
   def create
     @user = User.new
     @user.skip_confirmation!
-    @user.update_attributes(params[:user])
+    @user.update_attributes(user_params)
     if resource.save
       sign_in resource
-      render :status => 200,
-             :json => { :success => true,
-                      :info => "Registered",
-                      :data => { :user => resource,
-                                 :auth_token => current_user.authentication_token } }
+        render :status => 200,
+               :json => { :success => true,
+                        :info => "Registered",
+                        :data => { :user => resource,
+                                   :auth_token => current_user.authentication_token } }
     else
       render :status => :unprocessable_entity,
              :json => { :success => false,
@@ -22,4 +22,9 @@ class Api::V1::RegistrationsController < Devise::RegistrationsController
                         :data => {} }
     end
   end
+  
+  private
+    def user_params
+      params.require(:user).permit(:first_name, :last_name, :email, :password_confirmation, :password)
+    end
 end
