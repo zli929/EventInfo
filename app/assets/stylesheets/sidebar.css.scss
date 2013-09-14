@@ -1,0 +1,47 @@
+/* sidebar */
+
+aside {
+  .profile_picture {
+    float:left;
+    margin: 1px;
+    margin-right: 10px;
+    left: 0px;
+  }
+  
+  h1 {
+    margin: 0px;
+    line-height: 30px;
+  }
+  section {
+    margin-top: 10px;
+    padding: 10px 0;
+    border-top: 1px solid $grayLighter;
+    &:first-child {
+      border: 0;
+      padding-top: 0;
+    }
+    span {
+      display: block;
+      margin-bottom: 3px;
+      line-height: 1;
+    }
+    h1 {
+      font-size: 1.4em;
+      text-align: left;
+      letter-spacing: -1px;
+      margin-bottom: 3px;
+      margin-top: 0px;
+    }
+  }
+  .booked_appointment {
+    margin: 0px;
+    ol {
+      margin: 0px;
+    }
+  }
+  textarea {
+    height: 100px;
+    margin-bottom: 5px;
+    width: 100%;
+  }
+}

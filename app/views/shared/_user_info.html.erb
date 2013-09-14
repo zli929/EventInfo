@@ -1,0 +1,12 @@
+<a href="<%= user_path(current_user) %>">
+	<%= render :partial => 'shared/profile_picture',locals: {   :partial_user => current_user, :partial_size => :small} %>
+</a>
+<h1>
+  <%= current_user.name %>
+</h1>
+<!--
+<span>
+  <%= link_to "view my profile", current_user %>
+</span> -->
+<span>
+</span>

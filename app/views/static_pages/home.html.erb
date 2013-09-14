@@ -1,0 +1,38 @@
+<% if user_signed_in? %>
+  <div class="row">
+    <aside class="span4">
+      <section>
+        <%= render 'shared/user_info' %>
+      </section>
+      <section>
+        <%= render 'shared/stats' %>
+      </section>
+      <section>
+        <%= render 'shared/micropost_form' %>
+      </section>
+    </aside>
+	<!-- Right partition -->
+	<section>
+		<div class="span8">
+	  		<%= render 'shared/feed' %>
+		</div>
+	</section>
+  </div> 
+<% else %>
+  <div class="center hero-unit">
+    <h1>Welcome to the EventInfo</h1>
+	<div id="subscribers"></div>
+
+    <h2>
+      This is the home page for the
+      <a href="http://railstutorial.org/">Ruby on Rails Tutorial</a>
+      sample application.
+    </h2>
+
+	<!-- Login Links -->
+    <%= link_to "Sign up now!", new_user_registration_path, class: "btn btn-default btn-primary" %>
+    <%= link_to image_tag("FaceBook_Button_20130504.jpg", alt: "Sign in with Facebook") , user_omniauth_authorize_path(:facebook) %>
+  </div>
+  
+  <%= link_to image_tag("rails.png", alt: "Rails"), 'http://rubyonrails.org/' %>
+<% end %> 

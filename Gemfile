@@ -5,8 +5,14 @@ gem 'rails', '4.0.0'
 
 # Use sqlite3 as the database for Active Record
 
+# Databases
 gem 'pg', '0.15.1'
 gem 'rails_12factor', '0.0.2'
+
+# Bootstrap
+gem 'bootstrap-sass', '2.1'
+gem 'will_paginate', '3.0.3'
+gem 'bootstrap-will_paginate', '0.0.6'
 
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.0'

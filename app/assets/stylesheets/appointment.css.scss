@@ -1,0 +1,88 @@
+/* Appointments */
+#proposed_appointments_subtitle {
+  color: $grayLight;
+}
+
+#time_zone_selector {
+  #main_set_time_form {
+    float: right;
+    margin-right: 0px; 
+  }
+  .btn {
+    float: right;
+  }
+}
+
+.proposed_appointment{
+  margin-left: 0px;
+  ol{
+      margin-left: 0px;
+      section {
+        margin-bottom: 10px;
+        .meeting_gavatar {
+          margin-left: 0px;
+          margin-right: 0px;
+        }
+        .meeting_content {
+          margin-left: 10px;
+          margin-right: 0px;
+          .message {
+            display: block;
+          }
+        }
+        .meeting_editor {
+          margin-left: 10px;
+          margin-right: 0px;
+          display:block;
+        }
+        .meeting_confirm{
+          margin-left: 0px;
+          margin-right: 0px;
+          display:block;
+          float: right;
+          #appointment_app_date_time {
+            width: 205px;
+            float: right;
+          }
+          .btn {
+            margin: 5px 0px 0px 5px; 
+            float: right;
+          }
+          a {
+            float: right;
+          }
+          .class_buttons {
+            display: inline;
+            float: right;
+          }
+          
+        }
+        .timestamp {
+          color: $grayLight;
+      } 
+    }
+  }
+}
+
+/* Placeholder elements until streams load */
+.opentok_loading_div {
+  height: 315px;
+  width: 420px;
+  background-color: #F5F5F5;
+  .opentok_loading_img {
+    padding-top: 130px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+  } 
+  .opentok_loading_msg {
+    text-align: center;
+  }
+}
+
+/* Formatting of the whiteboad partition */
+.simple_sketch {
+  border-width:2px;
+  border-style:solid;
+  cursor: crosshair;
+}

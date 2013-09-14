@@ -1,0 +1,30 @@
+#current_profile_photo {
+  margin-left: 0px;
+  margin-top: 10px;
+}
+#user_avatar {
+  margin-bottom: 0px;
+}
+#crop_section {
+  margin:0px;
+  #crop_div {
+    position:relative;
+    left:-2px;
+    padding:2px;
+    margin:0px;
+    #crop_box{
+      width: 100%; 
+      height: 100%;
+    } 
+  }
+}
+#blurb_section {
+  margin-top: 10px;
+}
+
+.submit_profile{
+  margin-top:10px;
+  margin-left: 5px;
+  // margin-right:15px;
+  float:right;
+}
