@@ -1,0 +1,39 @@
+<% content_for(:head) do %>
+    <%= javascript_include_tag "advertisements/index" %>
+<% end %>
+
+<% provide(:title, "Create new post") %> 
+<h1><%= @advertisement.title %></h1>
+
+<!--Aside partition-->
+<aside class="span4">
+	<h4>Comments</h4>
+	<%= form_for(@advertisement_comment) do |f| %>
+	  <%= render 'shared/error_messages', object: f.object %>
+	  <div class="field">
+	  	<%= f.hidden_field :advertisement_id, :value => @advertisement.id %>
+	    <%= f.text_area :comment, placeholder: "Leave this seller a comment..." %>
+	  </div>
+	  <%= f.submit "Post", class: "btn btn-large btn-primary" %>
+	<% end %>
+	
+	<% if @current_comments.any? %>
+		<%= render :partial => 'current_comment', collection: @current_comments %>
+	<% end %>
+  	<%= will_paginate @current_comments %>
+</aside>
+
+<!--Main partition-->
+<section>
+<div class="span8">
+	
+	<h4>Description</h4>
+  	<%= raw @advertisement.content %>
+	<h4>Images</h4>
+
+	<% if @advertisement_images.any? %>
+		<%= render :partial => 'advertisement_image', collection: @advertisement_images %>
+	<% end %>
+</div>
+</section>
+ 

@@ -1,0 +1,45 @@
+<% content_for(:head) do %>
+    <%= javascript_include_tag "advertisements/index" %>
+<% end %>
+
+<% provide(:title, "Create new post") %> 
+<h1>Create new advertisement</h1>
+
+<div class="row">
+  <%= form_for(@advertisement) do |f| %>
+  	<section>
+  		
+  <div class="span8 offset2">
+  	<div class="span7 left">
+	  	<h5>Title</h5>
+		<%= f.text_field :title %>
+	</div>
+	<div class="span1 right">
+		<h5>Price</h5>
+	  	<%= f.text_field :price %>
+	</div>
+	</section>
+ 	<section id="blurb_section">
+  	<div class="span8 offset2">
+  	<h5>Please provide a short description of your item</h5>
+ 			 <%= f.cktext_area :content, :ckeditor => {:uiColor => "#eeeeee", :toolbar => "mini"} %>
+ 	</section>	
+ 	<section>
+  	<div class="span8 offset2">
+  	<h5>Please select up to 5 images to display with your advertisement</h5>
+  	<h6>Note: Large images may take several minutes to upload</h6>
+		 <%=  f.fields_for :advertisement_images do |builder| %>
+			<% if builder.object.new_record? %>
+  				<div class="span4 left">
+				<%= builder.file_field  :image, :class => "image_button" %>
+				
+				</div>	
+			<% end %>
+		<% end %>
+ 	</section>	
+ 	<section>
+  	<div class="span8 offset2">	
+	<%= f.submit "Create", class: "btn btn-small btn-primary submit_profile" %>
+	</section
+	<% end %>
+</div>

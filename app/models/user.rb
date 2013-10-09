@@ -1,6 +1,10 @@
 class User < ActiveRecord::Base
   before_save :ensure_authentication_token
   include ActiveModel::ForbiddenAttributesProtection
+  
+  has_many :advertisements, dependent: :destroy
+  has_many :advertisement_comments, dependent: :destroy
+  
   # :confirmable, 
   devise  :database_authenticatable, :registerable, :recoverable, :rememberable, 
           :trackable, :validatable, :omniauthable, 
@@ -42,14 +46,19 @@ class User < ActiveRecord::Base
     # Dummy data for passwords
     password_placeholder = Devise.friendly_token[0,20]
     
+    
     # Check to see if user has previously logged in
     if provider == "facebook"
       # Test to see if this authentication path has ever been used before
       
       user = User.where(:facebookuid => uid).first
+     
       unless user
+        # Test to see if the user's email has been used before
+        user = User.where(:email => email).first        
+                
         if user
-          user.facebookuid = auth.uid
+          user.facebookuid = uid
         else
           user = User.create(:first_name => first_name,
                      :last_name => last_name,
@@ -59,6 +68,7 @@ class User < ActiveRecord::Base
                      :password_confirmation => password_placeholder,
                      :nativelogin => false,
                      )
+                     
         end
       end
     end

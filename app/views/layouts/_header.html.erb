@@ -3,11 +3,8 @@
     <div class="container">
     	
       <div class= "span5" id="logo_box">
-      <%= link_to "sample app", root_path, id: "logo" %>
+      <%= link_to "PENNLIST", root_path, id: "logo" %>
       <br></br>
-      <% if user_signed_in? && !@booked_appointments.nil?%>
-      	<a href="#" onclick="TimerOnClick()"><span id="timer"></span></a>
-      <% end %>
       </div>
       
       
@@ -31,12 +28,6 @@
           <% else %>
             <li><%= link_to "Sign in", signin_path %></li>
           <% end %>
-          <div class="input-append search_div">
-			<%= form_tag users_path, :method => :get, :class => 'search_form' do%>
-			    <%= text_field_tag :search, params[:search], :class => 'span2', :id => 'search_text' %>
-			    <%= submit_tag "Search", :name => nil, :class => 'btn', :id => 'search_button' %>
-			<% end %>
-		  </div>
         </ul>
       </nav>
     </div>

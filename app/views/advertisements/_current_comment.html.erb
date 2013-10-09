@@ -1,0 +1,15 @@
+<ul class='comment_item hero-unit' id="<%= current_comment.id %>">
+    <span class="content"><%= current_comment.comment %></span>
+    
+    <span class="timestamp">
+      Posted by 
+      <%= current_comment.user.name %>
+      <%= time_ago_in_words(current_comment.created_at) %> ago.
+    </span>
+    
+  	<% if current_user?(current_comment.user) %>
+    	<%= link_to "delete", current_comment, method: :delete,
+                                    	data: { confirm: "You sure?" },
+                                     	title: current_comment.comment %>
+  	<% end %>
+</ul>

@@ -1,11 +1,14 @@
-<li id="<%= feed_item.id %>">
+<li class='feed_item hero-unit' id="<%= feed_item.id %>">
 	
-	<%= render :partial => 'shared/profile_picture',locals: {   :partial_user => feed_item.user, :partial_size => :thumb} %>
+	<div class="feed_picture">
+		<% unless feed_item.advertisement_images.empty? %>
+			<%= render :partial => 'shared/feed_picture', locals: {:partial_advertisement_image => feed_item.advertisement_images.first, :partial_size => :thumb} %>
+		<% end %>
+	</div>
 	
-    <span class="user">
-      <%= link_to feed_item.user.name, feed_item.user %>
+    <span class="ad_title"><h3>
+      <%= link_to feed_item.title, feed_item %></h3>
     </span>
-    <span class="content"><%= feed_item.content %></span>
     <span class="timestamp">
       Posted <%= time_ago_in_words(feed_item.created_at) %> ago.
     </span>

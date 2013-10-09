@@ -20,7 +20,9 @@ EventInfo::Application.routes.draw do
     end
   end
   
+  resources :advertisements
   resources :users
+  resources :advertisement_comments, only:    [:create, :destroy]
   
   root to: 'static_pages#home'
 
