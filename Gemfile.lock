@@ -39,6 +39,8 @@ GEM
     ckeditor (4.0.6)
       mime-types
       orm_adapter
+    ckeditor_rails (4.2)
+      railties (>= 3.0)
     climate_control (0.0.3)
       activesupport (>= 3.0)
     cocaine (0.5.2)
@@ -176,6 +178,7 @@ DEPENDENCIES
   bootstrap-sass (= 2.1)
   bootstrap-will_paginate (= 0.0.6)
   ckeditor
+  ckeditor_rails
   coffee-rails (~> 4.0.0)
   devise
   jbuilder (~> 1.2)

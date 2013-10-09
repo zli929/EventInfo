@@ -36,6 +36,7 @@ gem 'omniauth-facebook'
 gem 'paperclip'
 gem 'aws-sdk'
 gem 'ckeditor'
+gem 'ckeditor_rails'
 
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
