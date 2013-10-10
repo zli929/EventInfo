@@ -2,7 +2,8 @@ class Advertisement < ActiveRecord::Base
   belongs_to :user
 
   validates :user_id, presence: true
-  validates :content, presence: true
+  validates :title, presence: true
+  validates :price, presence: true
   
   has_many :advertisement_images, dependent: :destroy
   has_many :advertisement_comments, dependent: :destroy
