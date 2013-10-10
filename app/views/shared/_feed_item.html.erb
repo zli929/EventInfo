@@ -1,20 +1,23 @@
-<li class='feed_item hero-unit' id="<%= feed_item.id %>">
-	
-	<div class="feed_picture">
+<div class='feed_item hero-unit span8' id="<%= feed_item.id %>">
+	<div class="feed_picture span2 ">
 		<% unless feed_item.advertisement_images.empty? %>
 			<%= render :partial => 'shared/feed_picture', locals: {:partial_advertisement_image => feed_item.advertisement_images.first, :partial_size => :thumb} %>
 		<% end %>
 	</div>
-	
-    <span class="ad_title"><h3>
-      <%= link_to feed_item.title, feed_item %></h3>
-    </span>
-    <span class="timestamp">
-      Posted <%= time_ago_in_words(feed_item.created_at) %> ago.
-    </span>
-  	<% if current_user?(feed_item.user) %>
-    	<%= link_to "delete", feed_item, method: :delete,
-                                    	data: { confirm: "You sure?" },
-                                     	title: feed_item.content %>
-  	<% end %>
-</li>
+	<div class= "feed_title span5 right">
+	    <span class="ad_title"><h4>
+	      <%= link_to feed_item.title, feed_item %></h4>
+	    </span>
+	    <span class="timestamp">
+	      Posted <%= time_ago_in_words(feed_item.created_at) %> ago.
+	    </span>
+	  	<% if current_user?(feed_item.user) %>
+	    	<%= link_to "delete", feed_item, method: :delete,
+	                                    	data: { confirm: "You sure?" },
+	                                     	title: feed_item.content %>
+	  	<% end %>
+	</div>
+	<div class="span1 feed_price">
+		<h4><%= feed_item.price %></h4>
+	</div>
+</div>

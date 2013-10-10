@@ -1,14 +1,35 @@
 .feed_item{ 
+  margin-left:0px;
   margin-bottom: 10px;
-  padding-left:10px;
-  padding-bottom: 5px;
-  padding-top:5px;
+  padding-left:0px;
+  padding-right:0px;
+  padding-bottom:10px;
+  padding-top:10px;
 }
 .feed_picture{
-  margin-right: 10px;
-  float: left;
-  height: 60px; 
+  padding-left:10px;
+  margin-left:0px;
+  float: left; 
+  width:110px;
 }
+.feed_title{
+  h4{
+    margin-top:0px;
+    margin-bottom:0px;
+  }
+  float:left;
+  margin-left: 0px;
+  margin-top:0px;
+  margin-right:0px;
+  width:410px;
+}
+.feed_price{
+  margin-left: 0px;
+  margin-top:0px;
+  padding-right:10px;
+  float:left;
+}
+
 .left{
   margin-left: 0px;
 }

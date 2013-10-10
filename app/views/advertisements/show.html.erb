@@ -25,11 +25,17 @@
 
 <!--Main partition-->
 <section>
-<div class="span8">
+<div class="span7">
 	
+	<div class="span6 left">	
 	<h4>Description</h4>
   	<%= raw @advertisement.content %>
 	<h4>Images</h4>
+	</div>
+	<div class="span1 right">
+	<h4>Price</h4>
+  	<%= raw @advertisement.price %>
+	</div>
 
 	<% if @advertisement_images.any? %>
 		<%= render :partial => 'advertisement_image', collection: @advertisement_images %>

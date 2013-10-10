@@ -1,5 +1,5 @@
 class AdvertisementsController < ApplicationController  
-  before_filter :signed_in_user, only: [:create, :new, :destroy]
+  before_filter :signed_in_user, only: [:create, :new, :destroy, :show, :update]
   # I don't understand why this code here is absolutely necessary
   # before_filter :correct_user,   only: :destroy
   
@@ -46,7 +46,7 @@ class AdvertisementsController < ApplicationController
   def show
     @advertisement = Advertisement.find(params[:id])
     @advertisement_images = @advertisement.advertisement_images
-    @advertisement_comment  = current_user.advertisement_comments.build
+    @advertisement_comment  = @advertisement.advertisement_comments.build
     @current_comments = @advertisement.advertisement_comments.paginate(page: params[:page])
   end
 
