@@ -35,7 +35,6 @@ gem 'omniauth-facebook'
 # Profile picture and item photos
 gem 'paperclip'
 gem 'aws-sdk'
-gem 'ckeditor'
 gem 'ckeditor_rails'
 
 # Use jquery as the JavaScript library

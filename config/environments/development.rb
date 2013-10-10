@@ -18,6 +18,7 @@ EventInfo::Application.configure do
     }
   }
 
+  config.serve_static_assets = false
   # Do not eager load code on boot.
   config.eager_load = false
 

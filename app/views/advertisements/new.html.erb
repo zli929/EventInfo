@@ -22,7 +22,7 @@
  	<section id="blurb_section">
   	<div class="span8 offset2">
   	<h5>Please provide a short description of your item</h5>
- 			 <%= f.cktext_area :content, :ckeditor => {:uiColor => "#eeeeee", :toolbar => "mini"} %>
+ 			 <%= f.text_area :content, :class => 'ckeditor' %>
  	</section>	
  	<section>
   	<div class="span8 offset2">
@@ -43,3 +43,9 @@
 	</section
 	<% end %>
 </div>
+
+<script>
+$('.ckeditor').ckeditor({
+  toolbar = 'Pure'
+});
+</script>
