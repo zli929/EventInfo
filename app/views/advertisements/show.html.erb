@@ -7,14 +7,15 @@
 
 <!--Aside partition-->
 <aside class="span4">
-	<h4>Comments</h4>
+	<h4>Write a comment</h4>
 	<%= form_for(@advertisement_comment) do |f| %>
 	  <%= render 'shared/error_messages', object: f.object %>
 	  <div class="field">
 	  	<%= f.hidden_field :advertisement_id, :value => @advertisement.id %>
 	    <%= f.text_area :comment, placeholder: "Leave this seller a comment..." %>
 	  </div>
-	  <%= f.submit "Post", class: "btn btn-large btn-primary" %>
+	  <%= f.submit "Private msg poster", class: "btn btn-medium", id:"private_button" %>
+	  <%= f.submit "Public comment", class: "btn btn-medium btn-primary", id:"public_button" %>
 	<% end %>
 	
 	<% if @current_comments.any? %>

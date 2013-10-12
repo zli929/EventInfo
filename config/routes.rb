@@ -3,11 +3,12 @@ EventInfo::Application.routes.draw do
               :controllers => { :registrations => "users/registrations",
                                 :sessions => "users/sessions",
                                 :omniauth_callbacks => "users/omniauth_callbacks" }
-              
   devise_scope :user do
     match '/signin',  to: 'devise/sessions#new', via: [:get, :post]
     match '/signout', to: 'devise/sessions#destroy', via: :delete
   end
+ 
+  root to: 'static_pages#home'
  
   # Setting up Android Access
   namespace :api do
@@ -23,8 +24,6 @@ EventInfo::Application.routes.draw do
   resources :advertisements
   resources :users
   resources :advertisement_comments, only:    [:create, :destroy]
-  
-  root to: 'static_pages#home'
 
   #match '/signup',  to: 'users#new'
   match '/help',    to: 'static_pages#help', via: [:get]
