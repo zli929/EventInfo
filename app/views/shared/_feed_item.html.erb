@@ -1,6 +1,8 @@
 <div class='feed_item hero-unit span8' id="<%= feed_item.id %>">
 	<div class="feed_picture span2 ">
-		<% unless feed_item.advertisement_images.empty? %>
+		<% if feed_item.advertisement_images.empty? %>
+			<%= gravatar_for partial_advertisement_image, size: 60 %>
+		<% else %>	
 			<%= render :partial => 'shared/feed_picture', locals: {:partial_advertisement_image => feed_item.advertisement_images.first, :partial_size => :thumb} %>
 		<% end %>
 	</div>
