@@ -7,7 +7,7 @@ class User < ActiveRecord::Base
   
   # :confirmable, 
   devise  :database_authenticatable, :registerable, :recoverable, :rememberable, 
-          :trackable, :validatable, :omniauthable, 
+          :trackable, :validatable, :omniauthable, :confirmable,
           :omniauth_providers => [:facebook]
 
   attr_accessor :name
@@ -21,6 +21,10 @@ class User < ActiveRecord::Base
   validates :email, presence: true, 
     format: { with: VALID_EMAIL_REGEX }, 
     uniqueness: { case_sensitive: false }  
+
+  validates_each :email do |record, attr, value|
+       record.errors.add(attr, 'You must use an upenn.edu email address') unless value =~ /upenn.edu$/
+   end
 
   # Allows for a quick pull of the User's name without having to save said name
   after_initialize :get_name 
