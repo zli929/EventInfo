@@ -3,10 +3,17 @@
 <% end %>
 
 <% provide(:title, "Create new post") %> 
-<h1><%= @advertisement.title %></h1>
+<h1><%= @advertisement.title %> </h1>
+<h2 id='ad_by'>by <%= @advertisement.user.first_name %></h2>
 
 <!--Aside partition-->
+<section>
 <aside class="span4">
+	
+	<%= link_to "Back to listings", root_path %>
+	
+	<br>
+	<div>
 	<h4>Write a comment</h4>
 	<%= form_for(@advertisement_comment) do |f| %>
 	  <%= render 'shared/error_messages', object: f.object %>
@@ -14,7 +21,7 @@
 	  	<%= f.hidden_field :advertisement_id, :value => @advertisement.id %>
 	    <%= f.text_area :comment, placeholder: "Leave this seller a comment..." %>
 	  </div>
-	  <%= f.submit "Private msg poster", class: "btn btn-medium", id:"private_button" %>
+	  <%= f.submit "Email poster", class: "btn btn-medium", id:"private_button" %>
 	  <%= f.submit "Public comment", class: "btn btn-medium btn-primary", id:"public_button" %>
 	<% end %>
 	
@@ -22,6 +29,7 @@
 		<%= render :partial => 'current_comment', collection: @current_comments %>
 	<% end %>
   	<%= will_paginate @current_comments %>
+  	</div>
 </aside>
 
 <!--Main partition-->
@@ -35,12 +43,17 @@
 	</div>
 	<div class="span1 right">
 	<h4>Price</h4>
-  	<%= raw @advertisement.price %>
+	<% if @advertisement.price == -1%>
+		N/A
+	<% else %>
+  		<%= raw @advertisement.price %>
+  	<% end %>
 	</div>
 
 	<% if @advertisement_images.any? %>
 		<%= render :partial => 'advertisement_image', collection: @advertisement_images %>
 	<% end %>
 </div>
+</section>
 </section>
  

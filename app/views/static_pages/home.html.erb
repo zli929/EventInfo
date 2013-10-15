@@ -56,6 +56,9 @@
     	<%= f.password_field :password_confirmation %>
 
     	<%= f.submit "Create my account", class: "btn btn-default btn-primary vert-form-btn" %> 
+    	<div class="btn btn-default btn vert-form-btn">
+			<%= link_to "Already have an Account? Sign-In", signin_path %>		
+		</div>
 	<% end %>
 	<hr></hr>
 	<%= render "devise/shared/links" %>

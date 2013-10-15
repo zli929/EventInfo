@@ -12,12 +12,13 @@
   <div class="span8 offset2">
   	<div class="span7 left">
 	  	<h5>Title</h5>
-		<%= f.text_field :title %>
+		<%= f.text_field :title, :maxlength=>'80' %>
 	</div>
 	<div class="span1 right">
 		<h5>Price</h5>
 	  	<%= f.text_field :price %>
 	</div>
+	
 	</section>
  	<section id="blurb_section">
   	<div class="span8 offset2">

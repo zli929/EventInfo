@@ -5,6 +5,9 @@ class AdvertisementsController < ApplicationController
   
   def create
     @advertisement = current_user.advertisements.build(advertisement_params)
+    if @advertisement.price.nil?
+      @advertisement.price = -1
+    end
     
     # Save images attached to the advertisement if there are any
     unless params[:advertisement][:advertisement_images_attributes].nil?

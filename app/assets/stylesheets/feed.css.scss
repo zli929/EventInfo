@@ -10,12 +10,14 @@
 #main-container{
 }
 .feed_picture{
+  opacity:1;
   padding-left:10px;
   margin-left:0px;
   float: left; 
   width:110px;
 }
 .feed_title{
+  opacity:1;
   h4{
     margin-top:0px;
     margin-bottom:0px;
@@ -27,6 +29,7 @@
   width:410px;
 }
 .feed_price{
+  opacity:1;
   margin-left: 0px;
   margin-top:0px;
   padding-right:10px;
@@ -50,7 +53,9 @@
   padding-left: 5px;
   padding-right: 5px;
 }
-#private_button{}
+#private_button{
+  width: 147px;
+}
 #public_button{
   width: 147px;
 }
@@ -60,4 +65,14 @@
 .landing_box{
   height: 330px;
   opacity:0.75;
+}
+#back_home{
+  margin-left:0px;
+  padding-left: 0px;
+  padding-right:0px;
+}
+#ad_by{
+  text-align:left;
+  margin-left: 20px;
+  color: #585858;
 }

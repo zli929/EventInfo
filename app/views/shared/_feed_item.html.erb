@@ -20,6 +20,12 @@
 	  	<% end %>
 	</div>
 	<div class="span1 feed_price">
-		<h4><%= feed_item.price %></h4>
+		<h4>
+		<% if feed_item.price == -1 %>	
+			N/A
+		<% else %>	
+			<%= feed_item.price %>
+		<% end %>	
+		</h4>
 	</div>
 </div>
