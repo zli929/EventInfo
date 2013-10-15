@@ -10,12 +10,14 @@ class AdvertisementCommentsController < ApplicationController
         flash[:success] = "Thank you for your comment!"
       end
     
-    elsif params[:commit] == 'Private msg poster' 
-      poster = Advertisement.find(params[:advertisement_comment][:advertisement_id]).user
+    elsif params[:commit] == 'Email poster' 
+      advertisement = Advertisement.find(params[:advertisement_comment][:advertisement_id])
+      
+      poster = advertisement.user
       messager = current_user
       message = params[:advertisement_comment][:comment]
      
-      AdvertisementMailer.advertisement_update(messager, poster, message).deliver
+      AdvertisementMailer.advertisement_update(messager, poster, message, advertisement).deliver
            
       flash[:success] = "Your message has been sent to " + poster.first_name + "!"
     end

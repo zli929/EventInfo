@@ -1,7 +1,7 @@
-Hello <%= @poster.name %>
+Hello <%= @poster.first_name %>
 
-<%= @messager.name %> sent you the following message:
+<%= @messager.first_name %> sent you the following message:
 
 <%= @message %>
 
-Accept appointment: https://www.pennlist.co/
+Accept appointment: http://www.pennlist.co/advertisements/<%= @advertisement.id %>

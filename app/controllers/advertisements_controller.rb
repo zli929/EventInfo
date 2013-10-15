@@ -12,10 +12,12 @@ class AdvertisementsController < ApplicationController
     # Save images attached to the advertisement if there are any
     unless params[:advertisement][:advertisement_images_attributes].nil?
       i = 0
-      while (!params[:advertisement][:advertisement_images_attributes][i.to_s].nil? && i<6) do
-        @advertisement_image = @advertisement.advertisement_images.build()
-        @advertisement_image.image = params[:advertisement][:advertisement_images_attributes][i.to_s][:image]
-        @advertisement_image.save!
+      while (i<6) do
+        if !params[:advertisement][:advertisement_images_attributes][i.to_s].nil?
+          @advertisement_image = @advertisement.advertisement_images.build()
+          @advertisement_image.image = params[:advertisement][:advertisement_images_attributes][i.to_s][:image]
+          @advertisement_image.save!
+        end
         i += 1
       end
     end

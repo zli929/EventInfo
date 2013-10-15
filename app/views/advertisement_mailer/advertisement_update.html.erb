@@ -1,7 +1,7 @@
-<p>Hello <%= @poster.name %></p>
+<p>Hello <%= @poster.first_name %></p>
 
-<p><%= @messager.name %> sent you the following message:</p>
+<p><%= @messager.first_name %> sent you the following message:</p>
 
 <p><%= @message %>
 
-<p><a href="http://www.pennlist.co/">Login to PennList</a></p>
+<p><a href="http://www.pennlist.co/advertisements/<%= @advertisement.id %>">Go to my advertisement</a></p>
