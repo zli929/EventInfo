@@ -6,6 +6,6 @@ class AdvertisementMailer < ActionMailer::Base
     @poster = poster
     @message = message
     
-    mail(:to => "#{@poster.name} <#{@poster.email}>", :subject => "#{@messager.name} has sent you a comment")
+    mail(:to => ["#{@poster.name} <#{@poster.email}>", "#{@messager.name} <#{@messager.email}>"], :subject => "#{@messager.name} has sent you a comment")
   end
 end

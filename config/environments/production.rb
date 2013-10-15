@@ -93,5 +93,5 @@ EventInfo::Application.configure do
   config.log_formatter = ::Logger::Formatter.new
   
   # Default mailer URL
-  config.action_mailer.default_url_options = { :host => 'sheltered-wildwood-7542.herokuapp.com'}
+  config.action_mailer.default_url_options = { :host => 'www.pennlist.co'}
 end
