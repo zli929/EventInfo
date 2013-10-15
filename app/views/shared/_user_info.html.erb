@@ -1,12 +1,8 @@
-<a href="<%= user_path(current_user) %>">
-	<%= render :partial => 'shared/profile_picture',locals: {   :partial_user => current_user, :partial_size => :small} %>
-</a>
-<h1>
+
+<h1 id='user_name'>
   <%= current_user.name %>
 </h1>
 <span>
   <!-- will need to be polished -->	
-  <%= link_to "Create new post", new_advertisement_path %>
-</span>
-<span>
+  <%= link_to "Create new post", new_advertisement_path, :id => 'create_new' %>
 </span>
