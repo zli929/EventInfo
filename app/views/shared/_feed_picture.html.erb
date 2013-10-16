@@ -2,5 +2,6 @@
 	<!-- Use default gavatar/facebook/linkedin photos if no custom uploaded file exists -->
 	<%= image_tag partial_advertisement_image.image.url(partial_size)%>
 <% else %>
-	<%= gravatar_for partial_advertisement_image, size: partial_size == :thumb ? 60 : (partial_size == :tiny ? 30 : 100) %>
+
+	<%= gravatar_for partial_advertisement_image.advertisement.user, size: partial_size == :thumb ? 60 : (partial_size == :tiny ? 30 : 100) %>
 <% end %>
