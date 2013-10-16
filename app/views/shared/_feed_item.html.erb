@@ -11,7 +11,7 @@
 	      <%= link_to feed_item.title, feed_item %></h4>
 	    </span>
 	    <span class="timestamp">
-	      Posted <%= time_ago_in_words(feed_item.created_at) %> ago.
+	      Updated <%= time_ago_in_words(feed_item.updated_at) %> ago.
 	    </span>
 	  	<% if current_user?(feed_item.user) %>
 	    	<%= link_to "delete", feed_item, method: :delete,
