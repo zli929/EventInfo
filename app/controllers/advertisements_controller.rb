@@ -31,6 +31,10 @@ class AdvertisementsController < ApplicationController
     end
   end
   
+  def edit
+     @advertisement = Advertisement.find(params[:id])
+  end
+  
   def new
     @advertisement = current_user.advertisements.build
     5.times {

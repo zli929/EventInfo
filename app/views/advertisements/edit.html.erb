@@ -1,0 +1,39 @@
+<% content_for(:head) do %>
+    <%= javascript_include_tag "advertisements/index" %>
+<% end %>
+
+<% provide(:title, "Create new post") %> 
+<h1>Edit your existing advertisement</h1>
+
+<div class="row">
+  <%= form_for(@advertisement) do |f| %>
+  	<section>
+  		
+  <div class="span8 offset2">
+  	<div class="span7 left">
+	  	<h5>Title</h5>
+		<%= f.text_field :title, :maxlength=>'80' %>
+	</div>
+	<div class="span1 right">
+		<h5>Price</h5>
+	  	<%= f.text_field :price %>
+	</div>
+	
+	</section>
+ 	<section id="blurb_section">
+  	<div class="span8 offset2">
+  	<h5>Please provide a short description of your item</h5>
+ 			 <%= f.text_area :content, :class => 'ckeditor' %>
+ 	</section>	
+ 	<section>
+  	<div class="span8 offset2">	
+	<%= f.submit "Create", class: "btn btn-small btn-primary submit_profile" %>
+	</section
+	<% end %>
+</div>
+
+<script>
+$('.ckeditor').ckeditor({
+  toolbar = 'Pure'
+});
+</script>

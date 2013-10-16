@@ -13,8 +13,11 @@
 <aside class="span4">
 	
 	<%= link_to "Back to listings", root_path, :id => '' %>
-	
 	<br>
+	<% if current_user?(@advertisement.user) %>
+		<%= link_to 'Edit this advertisement', edit_advertisement_path%>
+		<br>
+	<% end %>
 	<div>
 	<h4>Write a comment</h4>
 	<%= form_for(@advertisement_comment) do |f| %>
