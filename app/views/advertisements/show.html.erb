@@ -18,16 +18,17 @@
 		<%= link_to 'Edit this advertisement', edit_advertisement_path%>
 		<br>
 	<% end %>
+	
 	<div>
-	<h4>Write a comment</h4>
+	<h4>Write an email/comment</h4>
 	<%= form_for(@advertisement_comment) do |f| %>
 	  <%= render 'shared/error_messages', object: f.object %>
 	  <div class="field">
 	  	<%= f.hidden_field :advertisement_id, :value => @advertisement.id %>
-	    <%= f.text_area :comment, placeholder: "Leave this seller a comment..." %>
+	    <%= f.text_area :comment, placeholder: "Send this seller an email or leave a comment..." %>
 	  </div>
-	  <%= f.submit "Email poster", class: "btn btn-medium", id:"private_button" %>
-	  <%= f.submit "Public comment", class: "btn btn-medium btn-primary", id:"public_button" %>
+	  <%= f.submit "Email poster", class: "btn btn-medium", id:"private_button", disabled:true %>
+	  <%= f.submit "Public comment", class: "btn btn-medium btn-primary", id:"public_button", disabled:true %>
 	<% end %>
 	
 	<% if @current_comments.any? %>
@@ -62,3 +63,35 @@
 </section>
 </section>
  
+<script>
+	$('#advertisement_comment_comment').click(function(){
+	    $('#private_button').removeAttr("disabled");
+	    $('#public_button').removeAttr("disabled");
+	});
+	
+	//$(document).ready(function() { 
+	//    $('#new_advertisement_comment').ajaxForm( { beforeSubmit: validate } ); 
+	//});
+	
+	function validate(formData, jqForm, options) { 
+    // formData is an array of objects representing the name and value of each field 
+    // that will be sent to the server;  it takes the following form: 
+    // 
+    // [ 
+    //     { name:  username, value: valueOfUsernameInput }, 
+    //     { name:  password, value: valueOfPasswordInput } 
+    // ] 
+    // 
+    // To validate, we can examine the contents of this array to see if the 
+    // username and password fields have values.  If either value evaluates 
+    // to false then we return false from this method. 
+ 
+	    for (var i=0; i < formData.length; i++) { 
+	        if (!formData[i].value) { 
+	            alert('Please enter comment'); 
+	            return false; 
+	        } 
+	    } 
+	    alert('Comment entered'); 
+	}
+</script>
