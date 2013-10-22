@@ -2,13 +2,19 @@
 <html>
   <head>
     <title><%= full_title(yield(:title)) %></title>
-   	<%= stylesheet_link_tag    "application", media: "all"  %>
-    <%= javascript_include_tag "application" %>
-    <%= csrf_meta_tags %>
-    
     <meta property="og:title" content="PennList"/>
 	<meta property="og:description" content="Buy & sell with confidence from the UPenn Community"/>
     <meta property="og:url" content="http://www.pennList.co"/>
+    <META NAME="KEYWORDS" CONTENT="PennList, UPenn, Penn">
+	<META NAME="DESCRIPTION" CONTENT="Buy & sell with confidence from the UPenn Community">
+	<META HTTP-EQUIV="CONTENT-LANGUAGE" CONTENT="EN">
+	<META NAME="revisit-after" CONTENT="14 days">
+	<META NAME="robots" CONTENT="all">
+		
+	<!-- Buy & sell with confidence from the UPenn Community -->
+   	<%= stylesheet_link_tag    "application", media: "all"  %>
+    <%= javascript_include_tag "application" %>
+    <%= csrf_meta_tags %>
     
     <%= render 'layouts/shim' %>
     <%= yield(:head) %>    
