@@ -3,7 +3,11 @@ require 'will_paginate/array'
 class StaticPagesController < ApplicationController
   def home
     if signed_in?
-      @feed_items = Advertisement.all.paginate(page: params[:page], :per_page => 25, :order => "updated_at DESC")
+      if params[:tag]
+        @feed_items = Advertisement.tagged_with(params[:tag]).paginate(page: params[:page], :per_page => 25, :order => "updated_at DESC")
+      else 
+        @feed_items = Advertisement.all.paginate(page: params[:page], :per_page => 25, :order => "updated_at DESC")
+      end
     end
   end
 

@@ -9,6 +9,8 @@ EventInfo::Application.routes.draw do
   end
  
   root to: 'static_pages#home'
+  
+  get 'tags/:tag', to: 'static_pages#home', as: :tag
  
   # Setting up Android Access
   namespace :api do

@@ -9,6 +9,9 @@ gem 'thin'
 # Mail
 gem 'actionmailer'
 
+# Tagging
+gem 'acts-as-taggable-on'
+
 # Databases
 gem 'pg', '0.15.1'
 gem 'rails_12factor', '0.0.2'
