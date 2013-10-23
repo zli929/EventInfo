@@ -45,7 +45,8 @@
 	<div class="span6 left">	
 	<h4>Description</h4>
   	<%= raw @advertisement.content %>
-	<h4>Images</h4>
+	
+	
 	</div>
 	<div class="span1 right">
 	<h4>Price</h4>
@@ -56,9 +57,12 @@
   	<% end %>
 	</div>
 
-	<% if @advertisement_images.any? %>
+<div class="span7 left">
+<% if @advertisement_images.any? %>
+	<h4>Images</h4>
 		<%= render :partial => 'advertisement_image', collection: @advertisement_images %>
 	<% end %>
+	</div>
 </div>
 </section>
 </section>

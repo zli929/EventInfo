@@ -20,13 +20,6 @@
 		</div>
 	</section>
  	
- 	<section>
-  		
-	  	<div class="span8 offset2">
-  			<%= f.label :tag_list, "Tags (separated by commas)" %>
-			<%= f.text_field :tag_list %>
-		</div>
-	</section>
  	
  	
  	<section id="blurb_section">
@@ -59,4 +52,5 @@
 $('.ckeditor').ckeditor({
   toolbar = 'Pure'
 });
+$( "#driver_id" ).autocomplete({ source: "/controller_name?filter_key=attr_name", minLength: 0 });
 </script>

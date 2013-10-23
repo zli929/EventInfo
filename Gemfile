@@ -11,6 +11,7 @@ gem 'actionmailer'
 
 # Tagging
 gem 'acts-as-taggable-on'
+gem 'rails3-jquery-autocomplete'
 
 # Databases
 gem 'pg', '0.15.1'
