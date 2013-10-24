@@ -65,7 +65,8 @@ class AdvertisementsController < ApplicationController
     @advertisement = Advertisement.find(params[:id])
   
     if current_user?(User.find(@advertisement.user_id))
-      @advertisement.destroy
+      @advertisement.status = false
+      @advertisement.save!
     end
       
     redirect_to(session[:return_to] || root_url)

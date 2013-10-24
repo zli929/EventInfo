@@ -50,12 +50,18 @@
     	<%= f.password_field :password_confirmation %>
 
     	<%= f.submit "Create my account", class: "btn btn-default btn-primary vert-form-btn" %> 
-    	<div class="btn btn-default btn vert-form-btn">
-			<%= link_to "Already have an Account? Sign-In", signin_path %>		
-		</div>
+    	
+    	<div>
+    	<br>
+    	<h5>Already have any account?</h5>
+    	<div class="vert-form-btn">
+    		<div class="btn btn-default">
+				<%= link_to "Sign-In with PennList", signin_path %>	
+			</div>
+			<!-- Facebook authentication goes here -->
+		</div>	
 	<% end %>
 	<hr></hr>
-	<%= render "devise/shared/links" %>
   </div>
   </section>
 <% end %> 
