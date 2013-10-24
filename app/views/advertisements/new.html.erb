@@ -19,10 +19,16 @@
 		  	<%= f.text_field :price %>
 		</div>
 	</section>
+    <section>
+	  	<div class="span8 offset2">
+  			<h5>Tags (separated by commas)</h5>
+			<%= f.autocomplete_field :tag_list, autocomplete_tag_name_advertisements_path, :"data-delimiter" => ', ' %>
+		</div>
+	</section>
  	<section id="blurb_section">
 	  	<div class="span8 offset2">
 	  	<h5>Please provide a short description of your item</h5>
-	 			 <%= f.text_area :content, :class => 'ckeditor' %>
+	 	<%= f.text_area :content, :class => 'ckeditor' %>
  	</section>	
  	
  	<section>

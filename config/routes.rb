@@ -23,7 +23,11 @@ EventInfo::Application.routes.draw do
     end
   end
   
-  resources :advertisements
+  resources :advertisements do
+    collection do
+      get :autocomplete_tag_name
+    end
+  end
   resources :users
   resources :advertisement_comments, only:    [:create, :destroy]
 

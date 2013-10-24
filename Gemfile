@@ -11,7 +11,7 @@ gem 'actionmailer'
 
 # Tagging
 gem 'acts-as-taggable-on'
-gem 'rails3-jquery-autocomplete'
+gem 'rails3-jquery-autocomplete', git: 'https://github.com/francisd/rails3-jquery-autocomplete'
 
 # Databases
 gem 'pg', '0.15.1'
@@ -46,6 +46,7 @@ gem 'ckeditor_rails'
 
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
+gem 'jquery-ui-rails'
 gem "jquery-form-rails"
 
 # Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks

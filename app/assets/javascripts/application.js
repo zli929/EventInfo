@@ -12,6 +12,8 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require jquery.ui.all
+//= require autocomplete-rails
 //= require ckeditor-jquery
 //= require bootstrap
 //= require_tree ./app_wide

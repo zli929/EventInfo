@@ -1,5 +1,6 @@
 class AdvertisementsController < ApplicationController  
   before_filter :signed_in_user, only: [:create, :new, :destroy, :show, :update]
+  autocomplete :tag, :name, :class_name => 'ActsAsTaggableOn::Tag'
   # I don't understand why this code here is absolutely necessary
   # before_filter :correct_user,   only: :destroy
   

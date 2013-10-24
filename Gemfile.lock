@@ -1,3 +1,10 @@
+GIT
+  remote: https://github.com/francisd/rails3-jquery-autocomplete
+  revision: 9884a40f2bb1a8fa3ffab445e6d2c74c3ee99a0d
+  specs:
+    rails3-jquery-autocomplete (1.0.11)
+      rails (>= 3.0)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -75,6 +82,8 @@ GEM
     jquery-rails (3.0.4)
       railties (>= 3.0, < 5.0)
       thor (>= 0.14, < 2.0)
+    jquery-ui-rails (4.0.5)
+      railties (>= 3.1.0)
     json (1.8.0)
     jwt (0.1.8)
       multi_json (>= 1.5)
@@ -119,7 +128,6 @@ GEM
       bundler (>= 1.3.0, < 2.0)
       railties (= 4.0.0)
       sprockets-rails (~> 2.0.0)
-    rails3-jquery-autocomplete (0.6.0)
     rails_12factor (0.0.2)
       rails_serve_static_assets
       rails_stdout_logging
@@ -187,12 +195,13 @@ DEPENDENCIES
   jbuilder (~> 1.2)
   jquery-form-rails
   jquery-rails
+  jquery-ui-rails
   omniauth
   omniauth-facebook
   paperclip
   pg (= 0.15.1)
   rails (= 4.0.0)
-  rails3-jquery-autocomplete
+  rails3-jquery-autocomplete!
   rails_12factor (= 0.0.2)
   sass-rails (~> 4.0.0)
   sdoc
