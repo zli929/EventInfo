@@ -93,5 +93,9 @@ EventInfo::Application.configure do
   config.log_formatter = ::Logger::Formatter.new
   
   # Default mailer URL
-  config.action_mailer.default_url_options = { :host => 'www.pennlist.co'}
+  if request.original_url.include?'pennlist-staging'
+    config.action_mailer.default_url_options = { :host => 'www.pennlist-staging.herokuapp.com'}
+  else
+    config.action_mailer.default_url_options = { :host => 'www.pennlist.co'}
+  end
 end
