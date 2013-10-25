@@ -11,6 +11,7 @@
 	<META HTTP-EQUIV="CONTENT-LANGUAGE" CONTENT="EN">
 	<META NAME="revisit-after" CONTENT="14 days">
 	<META NAME="robots" CONTENT="all">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		
 	<!-- Buy & sell with confidence from the UPenn Community -->
    	<%= stylesheet_link_tag    "application", media: "all"  %>
@@ -34,7 +35,11 @@
 	  <% end %>
   <% end %>
   <% if current_page?(root_url) %>
-  	<body class='main_body'>
+  	<% if user_signed_in? %>
+  		<body class="main_body">
+  	<% else %>
+  		<body class="main_body landing-page">
+  	<% end %>
   <% else %>
   	<body>
   <% end %> 

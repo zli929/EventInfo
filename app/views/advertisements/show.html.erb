@@ -2,71 +2,83 @@
     <%= javascript_include_tag "advertisements/index" %>
 <% end %>
 
-<% provide(:title, "Create new post") %> 
-<div class="span12" id="ad_title">
-<h1><%= @advertisement.title %> </h1>
-</div>
-<h2 id='ad_by'>by <%= @advertisement.user.first_name %></h2>
+<% provide(:title, @advertisement.title) %> 
 
-<!--Aside partition-->
-<section>
-<aside class="span4">
+<div class="row-fluid">
 	
+	<aside class="span4 sidebar">
+		
 	<%= link_to "Back to listings", root_path, :id => '' %>
-	<br>
-	<% if current_user?(@advertisement.user) %>
-		<%= link_to 'Edit this advertisement', edit_advertisement_path%>
-		<br>
-	<% end %>
 	
-	<div>
-	<h4>Write an email/comment</h4>
-	<%= form_for(@advertisement_comment) do |f| %>
-	  <%= render 'shared/error_messages', object: f.object %>
-	  <div class="field">
-	  	<%= f.hidden_field :advertisement_id, :value => @advertisement.id %>
-	    <%= f.text_area :comment, placeholder: "Send this seller an email or leave a comment..." %>
-	  </div>
-	  <%= f.submit "Email poster", class: "btn btn-medium", id:"private_button", disabled:true %>
-	  <%= f.submit "Public comment", class: "btn btn-medium btn-primary", id:"public_button", disabled:true %>
-	<% end %>
-	
-	<% if @current_comments.any? %>
-		<%= render :partial => 'current_comment', collection: @current_comments %>
-	<% end %>
-  	<%= will_paginate @current_comments %>
-  	</div>
-</aside>
+			<% if current_user?(@advertisement.user) %>
+			<div class="admin-links"><br>
+				<%= link_to 'Edit this listing', edit_advertisement_path, :class=>"btn btn-small btn-warning" %>
+		    	<%= link_to "Remove", @advertisement, method: :delete,
+		                                    	data: { confirm: "Are you sure?" },
+		                                     	title: @advertisement.content,
+		                                     	:class => "btn btn-small btn-danger" %>
+		    </div>
+			<% end %>
 
-<!--Main partition-->
-<section>
-<div class="span7 hero-unit ad_show">
 	
-	<div class="span6 left">	
-	<h4>Description</h4>
-  	<%= raw @advertisement.content %>
-	
-	
-	</div>
-	<div class="span1 right">
-	<h4>Price</h4>
-	<% if @advertisement.price == -1%>
-		N/A
-	<% else %>
-  		<%= raw @advertisement.price %>
-  	<% end %>
-	</div>
+		<h3>Listing by <%= @advertisement.user.first_name %> <%= @advertisement.user.last_name %></h2>
+		
+		<div class="content">
+			<div class="submitted">
+				<%= time_ago_in_words(@advertisement.updated_at) %> ago
+			</div>
+			
+			<div class="comments">
+			<!--<h4>Send an email to seller</h4>-->
+			<%= form_for(@advertisement_comment) do |f| %>
+			  <%= render 'shared/error_messages', object: f.object %>
+			  <div class="field">
+			  	<%= f.hidden_field :advertisement_id, :value => @advertisement.id %>
+			    <%#= f.text_area :comment, placeholder: "Send this seller an email or leave a comment..." %>
+			    <%= f.text_area :comment, placeholder: "Send this seller an email..." %>
+			  </div>
+			  <%= f.submit "Email seller", class: "btn btn-small", id:"private_button", disabled:true %>
+			  <%#= f.submit "Public comment", class: "btn btn-small btn-primary", id:"public_button", disabled:true %>
+			<% end %>
+			
+			<% if @current_comments.any? %>
+				<%= render :partial => 'current_comment', collection: @current_comments %>
+			<% end %>
+		  	<%= will_paginate @current_comments %>
+		  	</div>
+		</div>
 
-<div class="span7 left">
-<% if @advertisement_images.any? %>
-	<h4>Images</h4>
-		<%= render :partial => 'advertisement_image', collection: @advertisement_images %>
-	<% end %>
+	</aside>
+	
+	<div class="advertisement-content span8">
+		<h1 class="page-header ad-title"><%= @advertisement.title %> </h1>
+
+		<div class="feed-item-price feed-item-price-full pull-right label">
+		<% if @advertisement.price == -1 %>	
+			N/A
+		<% else %>	
+			$ <%= @advertisement.price %>
+		<% end %>	
+		</div>
+
+	    <div class="feed-field-item">
+	      <% unless @advertisement.tag_list.empty? %>
+	   	  	<span class="categories-label">Categories:</span> <%= raw @advertisement.tag_list.map { |t| link_to t, tag_path(t) }.join(', ') %>
+	   	  <% end %>
+	    </div>
+
+		<div class="feed-field-item">
+  			<%= raw @advertisement.content %>
+		</div>
+		
+		<% if @advertisement_images.any? %>
+			<%= render :partial => 'advertisement_image', collection: @advertisement_images %>
+		<% end %>
+		
 	</div>
+	
 </div>
-</section>
-</section>
- 
+
 <script>
 	$('#advertisement_comment_comment').click(function(){
 	    $('#private_button').removeAttr("disabled");

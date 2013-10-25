@@ -1,8 +1,8 @@
 
-<h1 id='user_name'>
+<h3>
   <%= current_user.name %>
-</h1>
-<span>
+</h3>
+<div class="content">
   <!-- will need to be polished -->	
-  <%= link_to "Create new post", new_advertisement_path, :id => 'create_new' %>
-</span>
+  <%= link_to "Create new post", new_advertisement_path %>
+</div>

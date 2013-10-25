@@ -15,13 +15,15 @@ html {
 }
 
 body {
-  padding-top: 60px;
+  /*padding-top: 60px;*/
+ background-color: #ffffff;
 }
 .main_body{
-  background-image: url(image_path('background2.jpg'));
+  /*background-image: url(image_path('background2.jpg'));
   background-attachment: fixed;
   background-size: 100%;
-  background-repeat: no-repeat;
+  background-repeat: no-repeat;*/
+ 
 }
 
 section {
@@ -67,16 +69,11 @@ h1, h2, h3, h4, h5, h6 {
 
 h1 {
   font-size: 3.0em;
-  letter-spacing: -2px;
   margin-bottom: 30px;
-  text-align: center;
 }
 
 h2 {
   font-size: 1.7em;
-  letter-spacing: -1px;
-  margin-bottom: 30px;
-  text-align: center;
   font-weight: normal;
   color: $grayLight;
 }
@@ -109,13 +106,13 @@ input {
   margin: 0px;
   margin-bottom: 5px;
   a {
-    color: #999999;
+    color: #777777;
   }
   #logo {
     float: left;
     margin-right: 10px;
     font-size: 1.7em;
-    color: white;
+    color: #777777;
     text-transform: uppercase;
     letter-spacing: -1px;
     padding-top: 9px;
@@ -241,6 +238,225 @@ footer {
   color: $grayLight;
 }
 .gravatar {
-  float: left;
+/*  float: left;
+  margin-right: 10px;*/
+}
+
+#main-container {
+  margin-top: 60px;
+}
+
+.logo {
+  padding-top: 11px;
+  line-height: 0;
+}
+
+
+.nav li.sell-button a {
+  background-color: #d9534f;
+  color: #fff;
+}
+
+.nav li.sell-button a:hover {
+   background-color: #cf4f4b;
+   color: #fff;
+}
+
+
+.plus-sell-button .btn {
+  font-size: 16px;
+  font-weight: bold;
+}
+
+/*
+.plus-sell-button a {
+   background-color: #cf4f4b;
+   color: #fff;
+}
+
+.plus-sell-button a:hover {
+   background-color: #cf4f4b;
+   color: #fff;
+}
+*/
+
+h1.page-header {
+    font-family: "freight-sans-pro","Myriad Pro","Lucida Grande","Lucida Sans Unicode","Lucida Sans",Geneva,Verdana,sans-serif;
+    font-weight: 700;
+    font-size: 42px;
+    text-align: left;
+}
+
+h1.page-header.ad-title {
+    font-size: 36px;
+}
+
+
+aside {
+  color: black;
+}
+
+.nav.pull-right {
+  margin-right: 0;
+}
+
+
+.nav-collapse .nav > li > a, .nav-collapse .dropdown-menu a {
+  font-weight: normal;
+}
+
+
+/*@media (max-width: 979px) {
+.nav-collapse .dropdown-menu {
+  display: none;
+}
+
+.nav-collapse .dropdown.open .dropdown-menu {
+  display: block;
+}
+
+}
+*/
+
+.collapsed-navbar-mobile {
   margin-right: 10px;
+}
+
+.landing-page {
+  background-size: cover;
+  background-position: top center;
+  background-repeat: no-repeat;
+  vertical-align: top;
+  background-image: url(image_path('background-wharton.jpg'));
+}
+
+@media (max-width: 767px) {
+  .landing-page {
+    background-image: url(image_path('landing-background.jpg'));
+  }
+  
+  .landing-page .container#main-container {
+    margin-top: 0;
+  }
+  
+  #cke_1_top,
+  #cke_1_bottom {
+    display: none
+  }
+
+}
+
+.landing-page #main-container {
+  margin-top: 100px;
+}
+
+.landing-intro-box .well {
+  border-radius: 10px;
+  opacity: 0.95;
+}
+
+.landing-intro-box p {
+    font-size: 14px;
+    line-height: 20px;
+    text-align: center;
+}
+
+
+.landing-intro-box h1 {
+  font-size: 24px;
+  text-align: center;
+  margin-top: 0;
+  margin-bottom: 10px;
+  font-weight: bold;
+}
+
+.landing-sign-up {
+  color: #fff;
+}
+
+.landing-sign-up h2 {
+  font-family: "freight-sans-pro","Myriad Pro","Lucida Grande","Lucida Sans Unicode","Lucida Sans",Geneva,Verdana,sans-serif;
+  font-weight: 700;
+  font-size: 36px;
+  border: 0;
+  margin-bottom: 20px;
+  color: #fff;
+  border: none;
+}
+
+.landing-sign-up .have-account {
+  margin-top: 20px;
+}
+
+.landing-sign-up .have-account h3 {
+  font-weight: normal;
+  font-size: 20px;
+}
+
+.landing-page footer nav li a {
+  color: #fff;
+}
+
+
+.landing-page footer {
+  border-top: none;
+}
+
+
+.remember-me .checkbox {
+  max-height: 13px !important;
+  min-height: 13px !important;
+}
+
+
+aside.sidebar {
+  color: #000;
+  
+  h3 {
+    font-size: 16px;
+    background-color: #efefef;
+    color: #555;
+    border-radius: 5px;
+    padding: 10px;
+  }
+  
+  .content {
+    margin-left: 10px;
+  }
+  
+  h4 {
+    font-size: 14px;
+    font-weight: normal;
+  }
+}
+
+
+.categories-label {
+  
+}
+
+.mobile-hint {
+  font-size: 14px;
+  padding: 10px;
+  font-weight: bold;
+  text-align: center;
+}
+
+.image-upload-form-wrapper {
+  background-color: #eee;
+  border-radius: 10px;
+  margin-bottom: 20px;
+}
+
+.image-upload-form .image-button {
+  margin-bottom: 0;
+  margin:0;
+}
+
+.image-upload-form .image-upload {
+  
+}
+
+.image-upload-form {
+  margin-top: 30px;
 }

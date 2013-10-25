@@ -1,15 +1,15 @@
-<h1>Resend confirmation</h1>
-<div class="row">
-  <div class="span6 offset3">
+<h1 class="page-header">Resend confirmation email</h1>
+<div class="row-fluid">
+  <div class="span4">
 
 <%= form_for(resource, :as => resource_name, :url => confirmation_path(resource_name), :html => { :method => :post }) do |f| %>
   	<%= devise_error_messages! %>
 
-  	<%= f.label :email %><br />
+  	<%= f.label :email %>
   	<%= f.email_field :email, :autofocus => true %>
 
   	<div>
-  	<%= f.submit "Resend confirmation", class: "btn btn-default btn-primary" %>
+  	<%= f.submit "Resend confirmation email", class: "btn btn-default" %>
   	</div>
 	<% end %>
 

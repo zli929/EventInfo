@@ -1,34 +1,39 @@
-<div class='feed_item hero-unit span10' id="<%= feed_item.id %>">
-	<div class="feed_picture span2 ">
+<div class='row-fluid feed-item-row' id="<%= feed_item.id %>">
+	<div class="feed-item-picture span2">
 		<% if feed_item.advertisement_images.empty? %>
-			<%= gravatar_for current_user, size: 60 %>
+			<%= gravatar_for current_user, size: 100 %>
 		<% else %>	
 			<%= render :partial => 'shared/feed_picture', locals: {:partial_advertisement_image => feed_item.advertisement_images.first, :partial_size => :thumb} %>
 		<% end %>
 	</div>
-	<div class= "feed_title span7 right">
-	    <span class="ad_title"><h4>
-	      <%= link_to feed_item.title, feed_item %></h4>
-	    </span>
-	    <span class="timestamp">
-	      <% unless feed_item.tag_list.empty? %>
-	   	  	Categories: <%= raw feed_item.tag_list.map { |t| link_to t, tag_path(t) }.join(', ') %>
-	   	  <% end %>
-	      Updated <%= time_ago_in_words(feed_item.updated_at) %> ago.
-	    </span>
-	  	<% if current_user?(feed_item.user) %>
-	    	<%= link_to "Remove", feed_item, method: :delete,
-	                                    	data: { confirm: "Are you sure?" },
-	                                     	title: feed_item.content %>
-	  	<% end %>
-	</div>
-	<div class="span1 feed_price">
-		<h4>
+	<div class= "feed-item-content span10">
+		
+		<div class="feed-item-price pull-right label">
 		<% if feed_item.price == -1 %>	
 			N/A
 		<% else %>	
 			<%= feed_item.price %>
 		<% end %>	
-		</h4>
+		</div>
+		
+	    <h2 class="feed-item-title"><%= link_to feed_item.title, feed_item %></h2>
+	    <div class="feed-field-item">
+	      <% unless feed_item.tag_list.empty? %>
+	   	  	<span class="categories-label">Categories:</span> <%= raw feed_item.tag_list.map { |t| link_to t, tag_path(t) }.join(', ') %>
+	   	  <% end %>
+	    </div>
+	    <div class="feed-field-item feed-item-submitted">
+	    	<%= time_ago_in_words(feed_item.updated_at) %> ago by <%= feed_item.user.first_name %> <%= feed_item.user.last_name %>
+	    </div>
+	  	<% if current_user?(feed_item.user) %>
+	  	<div class="admin-links">
+	    	<%= link_to "Remove", feed_item, method: :delete,
+	                                    	data: { confirm: "Are you sure?" },
+	                                     	title: feed_item.content,
+	                                     	:class => "btn btn-small btn-danger" %>
+	    </div>
+	  	<% end %>
+
+
 	</div>
 </div>

@@ -1,8 +1,8 @@
 <% provide(:title, 'Sign in') %>
-<h1>Sign in</h1>
+<h1 class="page-header">Sign in</h1>
 
-<div class="row">
-  <div class="span6 offset3">
+<div class="row-fluid">
+  <div class="span4">
 	<%= form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f| %>
   		<%= f.label :email, "Email" %>
   		<%= f.email_field :email, :autofocus => true %>
@@ -11,12 +11,14 @@
 	  	<%= f.password_field :password %>
 	
 	  	<% if devise_mapping.rememberable? %>	 	
-		  	<%= f.label :remember_me%> 
-		    <%= f.check_box :remember_me, class: "checkbox"%>    	  	
+		  	<!--<%= f.label :remember_me, class: "checkbox" %>-->
+		  	<label class="checkbox remember-me clearfix"> 
+		    <%= f.check_box :remember_me, class: "checkbox"%> Remember me on this device
+		    </label>    	  	
 	  	<% end -%>
 	
 		<div>
-	  	<%= f.submit "Sign in", class: "btn btn-default btn-primary"  %>
+	  	<%= f.submit "Sign in", class: "btn btn-default"  %>
 	  </div>
 	  	
 	<% end %>
