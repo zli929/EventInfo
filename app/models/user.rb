@@ -77,9 +77,7 @@ class User < ActiveRecord::Base
                      :password_confirmation => password_placeholder,
                      :confirmed_at => Time.now,
                      :nativelogin => false,
-                     )
-                     
-          raise user.to_yaml          
+                     )      
         end
       end
     end

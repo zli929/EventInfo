@@ -7,7 +7,7 @@ Devise.setup do |config|
   config.secret_key = '2ea8de1bff017e8f422e76328a2557c76659965ac6c2959e37bc5773022132dbc44ecff1667b8345975db9f69989d7aafc9bc17439d241f4459a002a2586c1a8'
 
   config.omniauth :facebook, FACEBOOK_API_KEY, FACEBOOK_API_SECRET,
-    :scope => 'user_groups'
+    :scope => 'email user_groups'
 
   config.warden do |manager|
     manager.failure_app = CustomFailure
