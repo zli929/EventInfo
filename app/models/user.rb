@@ -68,7 +68,6 @@ class User < ActiveRecord::Base
         if user
           user.facebookuid = uid
         elsif valid_facebook_group?(token)
-          raise 'hello'.to_yaml
           
           user = User.create(:first_name => first_name,
                      :last_name => last_name,
@@ -78,7 +77,9 @@ class User < ActiveRecord::Base
                      :password_confirmation => password_placeholder,
                      :confirmed_at => Time.now,
                      :nativelogin => false,
-                     )        
+                     )
+                     
+           raise user.valid?.to_yaml                  
         end
       end
     end
