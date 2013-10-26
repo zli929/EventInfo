@@ -79,7 +79,7 @@ class User < ActiveRecord::Base
                      :nativelogin => false,
                      )
                      
-           raise user.valid?.to_yaml                  
+          raise user.to_yaml          
         end
       end
     end
