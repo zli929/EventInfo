@@ -5,3 +5,7 @@
 <p><%= @message %>
 
 <p><a href="http://www.pennlist.co/advertisements/<%= @advertisement.id %>">Go to my advertisement</a></p>
+
+<%if (@advertisement.email_count > 1)%>
+<%= link_to "Remove", @advertisement, method: :destroy %>
+<%end%>

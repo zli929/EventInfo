@@ -1,7 +1,8 @@
 class AdvertisementMailer < ActionMailer::Base
   default from: 'notifications@pennlist.co'
   
-  def advertisement_update(messager, poster, message, advertisement)
+  def advertisement_update(messager, poster, message, advertisement, email_count)
+    
     @messager = messager
     @poster = poster
     @message = message
