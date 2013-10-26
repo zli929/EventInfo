@@ -74,9 +74,9 @@ class User < ActiveRecord::Base
                      :email => email,
                      :password => password_placeholder,
                      :password_confirmation => password_placeholder,
+                     :confirmed_at => Time.now,
                      :nativelogin => false,
-                     )
-          user.skip_confirmation!           
+                     )        
         end
       end
     end
