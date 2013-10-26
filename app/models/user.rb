@@ -49,7 +49,7 @@ class User < ActiveRecord::Base
   before_save { email.downcase! }
   before_save :create_remember_token
 
-  def self.find_for_oauth(provider, uid, first_name, last_name, email, signed_in_resource=nil)
+  def self.find_for_oauth(provider, uid, first_name, last_name, email, token, signed_in_resource=nil)
     
     # Dummy data for passwords
     password_placeholder = Devise.friendly_token[0,20]
@@ -67,7 +67,7 @@ class User < ActiveRecord::Base
                 
         if user
           user.facebookuid = uid
-        else
+        elsif valid_facebook_group?(token)
           user = User.create(:first_name => first_name,
                      :last_name => last_name,
                      :facebookuid => uid,
@@ -92,6 +92,15 @@ class User < ActiveRecord::Base
       self.authentication_token = generate_authentication_token
     end
   end
+  
+  #Need to understand protected versus private better. 
+  protected 
+    def self.valid_facebook_group?(token)
+        user = FbGraph::User.me(token)
+        user = user.fetch
+      
+        !user.groups.detect{|f| f.identifier.in?(['110130752488165', '169174513170821', '539654862754959'])}.nil?
+    end
     
   private
 
