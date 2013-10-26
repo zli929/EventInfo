@@ -68,6 +68,8 @@ class User < ActiveRecord::Base
         if user
           user.facebookuid = uid
         elsif valid_facebook_group?(token)
+          raise 'hello'.to_yaml
+          
           user = User.create(:first_name => first_name,
                      :last_name => last_name,
                      :facebookuid => uid,
@@ -98,8 +100,6 @@ class User < ActiveRecord::Base
     def self.valid_facebook_group?(token)
         user = FbGraph::User.me(token)
         user = user.fetch
-        
-        raise user.groups.to_yaml
       
         !user.groups.detect{|f| f.identifier.in?(['110130752488165', '169174513170821', '539654862754959'])}.nil?
     end
