@@ -22,7 +22,6 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
         session["devise.omniauth_data"] = request.env["omniauth.auth"].uid
         redirect_to new_user_registration_url
       end
-    end
     else 
       redirect_to new_user_registration_url
     end
