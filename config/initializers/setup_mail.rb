@@ -9,4 +9,4 @@ ActionMailer::Base.smtp_settings = {
   :domain         => 'pennlist.co',
   :enable_starttls_auto => true
 }
-ActionMailer::Base.register_interceptor(DevelopmentMailInterceptor) if !Rails.env.production?
+ActionMailer::Base.register_interceptor(DevelopmentMailInterceptor) if Rails.env.development?
