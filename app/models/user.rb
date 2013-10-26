@@ -22,10 +22,14 @@ class User < ActiveRecord::Base
     format: { with: VALID_EMAIL_REGEX }, 
     uniqueness: { case_sensitive: false }  
 
-  validates_each :email do |record, attr, value|
-       record.errors.add(attr, 'You must use an upenn.edu email address') unless value =~ /upenn.edu$/
-   end
+  def email_validation_required?
+    :facebookuid.nil?
+  end
 
+  VALID_EMAILS = %w(upenn.edu)
+  validates_format_of :email, :with => /#{VALID_EMAILS.map{|a| Regexp.quote(a)}.join('|')}/, :message => "You must use an upenn.edu email address",
+    :if => :email_validation_required?
+    
   # Allows for a quick pull of the User's name without having to save said name
   after_initialize :get_name 
   def get_name
@@ -72,7 +76,7 @@ class User < ActiveRecord::Base
                      :password_confirmation => password_placeholder,
                      :nativelogin => false,
                      )
-                     
+          user.skip_confirmation!           
         end
       end
     end

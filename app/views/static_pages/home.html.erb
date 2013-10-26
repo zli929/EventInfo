@@ -27,15 +27,14 @@
     		<div class="fb-like" data-href="http://www.pennlist.co" data-width="200" data-height="auto" data-colorscheme="dark" data-layout="standard" data-action="recommend" data-show-faces="true" data-send="false"></div>
     	</div>
 	</div>
-	<!-- Login Links -->
-    <!-- <%= link_to image_tag("FaceBook_Button_20130504.jpg", alt: "Sign in with Facebook") , user_omniauth_authorize_path(:facebook) %>-->
   </aside>
   <div class="span5 offset1 landing-sign-up user-profile-form well">
   	<h2 class= "sign-up-title">Sign up now!</h2>
   	
   	<div class="user-profile-form-row sign-up-facebook row-fluid">
   		<div class="span12">
-  			<a href="/"><img src="<%= image_path('facebook-button.png') %>"></a>&nbsp;&nbsp; or create an account
+  			<%= link_to image_tag("facebook-button.png", alt: "Sign in with Facebook") , user_omniauth_authorize_path(:facebook) %>
+  			&nbsp;&nbsp; or create an account
   		</div>
   		<div></div>
   	</div>

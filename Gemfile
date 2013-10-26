@@ -38,6 +38,7 @@ gem 'coffee-rails', '~> 4.0.0'
 gem 'devise'
 gem 'omniauth'
 gem 'omniauth-facebook'
+gem 'fb_graph'
 
 # Profile picture and item photos
 gem 'paperclip'
