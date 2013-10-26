@@ -98,6 +98,8 @@ class User < ActiveRecord::Base
     def self.valid_facebook_group?(token)
         user = FbGraph::User.me(token)
         user = user.fetch
+        
+        raise user.to_yaml
       
         !user.groups.detect{|f| f.identifier.in?(['110130752488165', '169174513170821', '539654862754959'])}.nil?
     end
