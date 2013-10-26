@@ -327,12 +327,12 @@ aside {
   background-position: top center;
   background-repeat: no-repeat;
   vertical-align: top;
-  background-image: url(image_path('background-wharton.jpg'));
+  background-image: url(image_path('background-white-party-gradient.jpg'));
 }
 
 @media (max-width: 767px) {
   .landing-page {
-    background-image: url(image_path('landing-background.jpg'));
+  /*  background-image: url(image_path('landing-background.jpg'));*/
   }
   
   .landing-page .container#main-container {
@@ -344,6 +344,13 @@ aside {
     display: none
   }
 
+  #advertisement_advertisement_images_attributes_1_image,
+  #advertisement_advertisement_images_attributes_2_image,
+  #advertisement_advertisement_images_attributes_3_image,
+  #advertisement_advertisement_images_attributes_4_image {
+    display: none;
+  }
+
 }
 
 .landing-page #main-container {
@@ -353,6 +360,12 @@ aside {
 .landing-intro-box .well {
   border-radius: 10px;
   opacity: 0.95;
+}
+
+.landing-intro-box aside .well {
+  background-color: #333;
+  border: none;
+  color: #eee;
 }
 
 .landing-intro-box p {
@@ -371,8 +384,9 @@ aside {
 }
 
 .landing-sign-up {
-  color: #fff;
+  color: #000;
 }
+
 
 .landing-sign-up h2 {
   font-family: "freight-sans-pro","Myriad Pro","Lucida Grande","Lucida Sans Unicode","Lucida Sans",Geneva,Verdana,sans-serif;
@@ -380,7 +394,7 @@ aside {
   font-size: 36px;
   border: 0;
   margin-bottom: 20px;
-  color: #fff;
+  color: #000;
   border: none;
 }
 
@@ -394,7 +408,7 @@ aside {
 }
 
 .landing-page footer nav li a {
-  color: #fff;
+  /*color: #fff;*/
 }
 
 
@@ -428,6 +442,7 @@ aside.sidebar {
     font-size: 14px;
     font-weight: normal;
   }
+  
 }
 
 
@@ -459,4 +474,11 @@ aside.sidebar {
 
 .image-upload-form {
   margin-top: 30px;
+}
+
+
+.facebook-like {
+    padding-top: 20px;
+    margin-top: 20px;
+    border-top: 1px solid #444;
 }
