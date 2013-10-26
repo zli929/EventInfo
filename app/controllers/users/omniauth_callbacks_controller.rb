@@ -13,6 +13,7 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
       set_flash_message(:notice, :success, :kind => "Facebook") if is_navigational_format?
     else
       session["devise.omniauth_data"] = request.env["omniauth.auth"].uid
+      flash[:alert] = 'We were not able to log you in using Facebook, please fill out the form below. We apologize for the inconvenience'
       redirect_to new_user_registration_url
     end
   end
