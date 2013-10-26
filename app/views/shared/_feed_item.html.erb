@@ -1,7 +1,9 @@
 <div class='row-fluid feed-item-row' id="<%= feed_item.id %>">
 	<div class="feed-item-picture span2">
 		<% if feed_item.advertisement_images.empty? %>
-			<%= gravatar_for current_user, size: 100 %>
+			<%#= gravatar_for current_user, size: 100 
+			%>
+			<span class="default-image glyphicon glyphicon-shopping-cart">&nbsp;</span>
 		<% else %>	
 			<%= render :partial => 'shared/feed_picture', locals: {:partial_advertisement_image => feed_item.advertisement_images.first, :partial_size => :thumb} %>
 		<% end %>
