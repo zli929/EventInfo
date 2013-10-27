@@ -1,5 +1,5 @@
 class AdvertisementsController < ApplicationController  
-  before_filter :signed_in_user, only: [:create, :new, :destroy, :show, :update]
+  before_filter :signed_in_user, only: [:create, :new, :destroy, :show, :update, :delete]
   autocomplete :tag, :name, :class_name => 'ActsAsTaggableOn::Tag'
   # I don't understand why this code here is absolutely necessary
   # before_filter :correct_user,   only: :destroy
@@ -55,6 +55,11 @@ class AdvertisementsController < ApplicationController
   end
 
   def show
+    if params[:method] == 'delete'
+      remove_listing(params[:id])
+      redirect_to root_url
+    end
+    
     @advertisement = Advertisement.find(params[:id])
     if params[:destroy]
         @advertisement.destroy and redirect_to(session[:return_to] || root_url) and return
@@ -68,18 +73,21 @@ class AdvertisementsController < ApplicationController
 
   def destroy
     store_location    
-    @advertisement = Advertisement.find(params[:id])
-  
-    if current_user?(User.find(@advertisement.user_id))
-      @advertisement.status = false
-      @advertisement.save!
-    end
-      
+    remove_listing(params[:id])
     redirect_to(session[:return_to] || root_url)
   end
   
 
   private 
+    def remove_listing(id)
+      @advertisement = Advertisement.find(id)
+  
+      if current_user?(User.find(@advertisement.user_id))
+        @advertisement.status = false
+        @advertisement.save!
+      end
+    end
+  
     def advertisement_params
       params.require(:advertisement).permit(:content, :title, :price, :tag_list)
     end
