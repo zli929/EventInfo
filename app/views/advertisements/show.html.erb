@@ -12,10 +12,10 @@
 	
 			<% if current_user?(@advertisement.user) %>
 			<div class="admin-links"><br>
-				<%= link_to 'Edit this listing', edit_advertisement_path, :class=>"btn btn-small btn-warning" %>
+				<%= link_to 'Edit this listing', edit_advertisement_path, :class=>"btn btn-small btn-warning", title: "Edit this listing" %>&nbsp;
 		    	<%= link_to "Remove", @advertisement, method: :delete,
 		                                    	data: { confirm: "Are you sure?" },
-		                                     	title: @advertisement.content,
+		                                     	title: "Remove this listing",
 		                                     	:class => "btn btn-small btn-danger" %>
 		    </div>
 			<% end %>

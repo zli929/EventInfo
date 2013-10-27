@@ -1,12 +1,15 @@
 
 <h3>
-  <%= current_user.name %>
+  <%#= current_user.name 
+  %>
+  Categories
 </h3>
 <div class="content">
-  <!-- will need to be polished -->	
-  <%= link_to "Create new post", new_advertisement_path %>
-<h5>Categories</h5>
+  <%#= link_to "Create new post", new_advertisement_path 
+  %>
+  <ul class="categories-list">
 <% @tags.each do |tag| %>
-  <ul><%= link_to tag, tag_path(tag.name) %></ul>
+  <li class="category-line"><%= link_to tag, tag_path(tag.name) %></li>
 <% end %>
+	</ul>
 </div>

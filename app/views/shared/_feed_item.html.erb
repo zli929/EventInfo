@@ -3,9 +3,11 @@
 		<% if feed_item.advertisement_images.empty? %>
 			<%#= gravatar_for current_user, size: 100 
 			%>
-			<span class="default-image glyphicon glyphicon-shopping-cart"></span>
+			<%= link_to "", feed_item, :class=>"default-image glyphicon glyphicon-shopping-cart" %>
+
 		<% else %>	
-			<%= render :partial => 'shared/feed_picture', locals: {:partial_advertisement_image => feed_item.advertisement_images.first, :partial_size => :thumb} %>
+			<%=render :partial => 'shared/feed_picture', locals: {:partial_advertisement_image => feed_item.advertisement_images.first, :partial_size => :thumb} %>
+			
 		<% end %>
 	</div>
 	<div class= "feed-item-content span10">
@@ -15,7 +17,7 @@
 			N/A
 		<% else %>	
 			<%= feed_item.price %>
-		<% end %>	
+		<% end %>
 		</div>
 		
 	    <h2 class="feed-item-title"><%= link_to feed_item.title, feed_item %></h2>
@@ -29,9 +31,10 @@
 	    </div>
 	  	<% if current_user?(feed_item.user) %>
 	  	<div class="admin-links">
+	  		<%= link_to 'Edit', edit_advertisement_path(feed_item.id), :class=>"btn btn-small btn-warning", title: "Edit this listing" %>&nbsp;
 	    	<%= link_to "Remove", feed_item, method: :delete,
 	                                    	data: { confirm: "Are you sure?" },
-	                                     	title: feed_item.content,
+	                                     	title: "Remove this listing",
 	                                     	:class => "btn btn-small btn-danger" %>
 	    </div>
 	  	<% end %>

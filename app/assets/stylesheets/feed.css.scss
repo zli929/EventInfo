@@ -161,4 +161,10 @@ h2.feed-item-title {
 .feed-item-picture .default-image {
   font-size: 80px;
   color: #eee;
+  text-decoration: none;
 }
+
+.feed-item-picture .default-image:hover {
+  color: #0088cc;
+}
+

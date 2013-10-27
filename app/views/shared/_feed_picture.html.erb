@@ -1,7 +1,7 @@
 <% if partial_advertisement_image.image.exists? %>
 	<!-- Use default gavatar/facebook/linkedin photos if no custom uploaded file exists -->
-	<%= image_tag partial_advertisement_image.image.url(partial_size)%>
+	<%= link_to (image_tag partial_advertisement_image.image.url(partial_size)), partial_advertisement_image.advertisement %>
 <% else %>
 
-	<%= gravatar_for partial_advertisement_image.advertisement.user, size: partial_size == :thumb ? 60 : (partial_size == :tiny ? 30 : 100) %>
+	<%= link_to (gravatar_for partial_advertisement_image.advertisement.user, size: partial_size == :thumb ? 60 : (partial_size == :tiny ? 30 : 100)), partial_advertisement_image.advertisement %>
 <% end %>
