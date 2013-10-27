@@ -56,6 +56,8 @@ class AdvertisementsController < ApplicationController
 
   def show
     if params[:method] == 'delete'
+      
+      raise 'hello'.to_yaml
       remove_listing(params[:id])
       redirect_to root_url
     end
