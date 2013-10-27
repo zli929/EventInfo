@@ -14,5 +14,5 @@
 -->
 
 
-<%= link_to "Sold your stuff? Click here to remove your listing!", @advertisement, :controller => :advertisements_controller, :action => :destroy %>
+<%= link_to "Sold your stuff? Click here to remove your listing!", advertisement_path(@advertisement, :destroy => true) , :method => :delete %>
 <%end%>
