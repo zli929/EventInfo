@@ -56,8 +56,6 @@ class AdvertisementsController < ApplicationController
 
   def show
     if params[:method] == 'delete'
-      
-      raise 'hello'.to_yaml
       remove_listing(params[:id])
       redirect_to root_url
     end
@@ -82,6 +80,7 @@ class AdvertisementsController < ApplicationController
 
   private 
     def remove_listing(id)
+      raise id.to_yaml
       @advertisement = Advertisement.find(id)
   
       if current_user?(User.find(@advertisement.user_id))
