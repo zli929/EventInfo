@@ -350,7 +350,15 @@ aside {
   #advertisement_advertisement_images_attributes_4_image {
     display: none;
   }
-
+  
+  h1.page-header {
+    font-family: "freight-sans-pro","Myriad Pro","Lucida Grande","Lucida Sans Unicode","Lucida Sans",Geneva,Verdana,sans-serif;
+    font-weight: 700;
+    font-size: 36px;
+    text-align: left;
+  }
+  
+  /* end of styles for mobile */
 }
 
 .landing-page #main-container {

@@ -23,4 +23,7 @@ class StaticPagesController < ApplicationController
   
   def after_signup
   end
+  
+  def disclaimer
+  end
 end
