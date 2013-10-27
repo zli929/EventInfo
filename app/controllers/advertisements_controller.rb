@@ -86,7 +86,7 @@ class AdvertisementsController < ApplicationController
         @advertisement.status = false
         @advertisement.save!
       else 
-        flash[:alert] = 'You must be logged in to your posting account to remove this add'
+        flash[:alert] = 'You must be logged in to your posting account to remove this advertisement'
       end
     end
   
