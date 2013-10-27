@@ -80,12 +80,13 @@ class AdvertisementsController < ApplicationController
 
   private 
     def remove_listing(id)
-      raise id.to_yaml
       @advertisement = Advertisement.find(id)
   
       if current_user?(User.find(@advertisement.user_id))
         @advertisement.status = false
         @advertisement.save!
+      else 
+        flash[:alert] = 'You must be logged in to your posting account to remove this add'
       end
     end
   
