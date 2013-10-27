@@ -64,8 +64,6 @@ class AdvertisementsController < ApplicationController
     @advertisement_comment  = @advertisement.advertisement_comments.build
     @current_comments = @advertisement.advertisement_comments.paginate(page: params[:page], :order => "updated_at DESC")
     
-    
-    
   end
 
   def destroy

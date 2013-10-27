@@ -17,7 +17,7 @@ class Advertisement < ActiveRecord::Base
   def each_tag
     for tag in tag_list
       errors.add(:tag, "too long (maximum is 50 characters)") if tag.length > 50
-      errors.add(:tag, "can't contain a period") if tag.include? '.'    
+      errors.add(:tag, "can't contain a period") if tag.include? '.'
     end
   end
 end
