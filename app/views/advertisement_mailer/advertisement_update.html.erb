@@ -7,5 +7,12 @@
 <p><a href="http://www.pennlist.co/advertisements/<%= @advertisement.id %>">Go to my advertisement</a></p>
 
 <%if (@advertisement.email_count > 1)%>
-<%= link_to "Remove", @advertisement, method: :destroy %>
+
+
+<!--
+<p><a href="http://www.pennlist.co/advertisements/<%= @advertisement.id %>">Sold your stuff? Click here to remove your listing!</a></p>
+-->
+
+
+<%= link_to "Sold your stuff? Click here to remove your listing!", @advertisement, :controller => :advertisements_controller, :action => :destroy %>
 <%end%>

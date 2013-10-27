@@ -71,6 +71,7 @@ class AdvertisementsController < ApplicationController
       
     redirect_to(session[:return_to] || root_url)
   end
+  
 
   private 
     def advertisement_params
