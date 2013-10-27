@@ -55,9 +55,16 @@ class AdvertisementsController < ApplicationController
 
   def show
     @advertisement = Advertisement.find(params[:id])
+    if params[:destroy]
+        @advertisement.destroy and redirect_to(session[:return_to] || root_url) and return
+    end
+    
     @advertisement_images = @advertisement.advertisement_images
     @advertisement_comment  = @advertisement.advertisement_comments.build
     @current_comments = @advertisement.advertisement_comments.paginate(page: params[:page], :order => "updated_at DESC")
+    
+    
+    
   end
 
   def destroy
@@ -71,6 +78,7 @@ class AdvertisementsController < ApplicationController
       
     redirect_to(session[:return_to] || root_url)
   end
+  
 
   private 
     def advertisement_params
