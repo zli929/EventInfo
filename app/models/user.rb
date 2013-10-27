@@ -23,7 +23,7 @@ class User < ActiveRecord::Base
     uniqueness: { case_sensitive: false }  
 
   def email_validation_required?
-    :facebookuid.nil?
+    facebookuid.nil?
   end
 
   VALID_EMAILS = %w(upenn.edu)
@@ -37,7 +37,7 @@ class User < ActiveRecord::Base
   end
 
   def password_validation_required?
-    :encrypted_password.nil? || !@password.blank? || !@password_confirmation.blank?
+    encrypted_password.nil? || !@password.blank? || !@password_confirmation.blank?
   end
     
   # Password validations update  
