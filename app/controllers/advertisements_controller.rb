@@ -27,8 +27,9 @@ class AdvertisementsController < ApplicationController
       flash[:success] = "Your advertisement has been created!"
       redirect_to root_url
     else
+      flash[:error] = @advertisement.errors.full_messages
       @feed_items = []
-      render 'static_pages/home'
+      render action: 'new'
     end
   end
   
