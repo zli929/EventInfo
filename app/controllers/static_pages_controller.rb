@@ -8,6 +8,7 @@ class StaticPagesController < ApplicationController
       else 
         @feed_items = Advertisement.where(status: true).paginate(page: params[:page], :per_page => 25, :order => "updated_at DESC")
       end
+      @tags = ActsAsTaggableOn::Tag.all
     end
   end
 

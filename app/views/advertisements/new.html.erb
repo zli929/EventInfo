@@ -23,7 +23,7 @@
 		
 	<div>
   			<h5>Tags (separated by commas)</h5>
-			<%= f.autocomplete_field :tag_list, autocomplete_tag_name_advertisements_path, :"data-delimiter" => ', ' %>
+			<%= f.autocomplete_field :tag_list, autocomplete_tag_name_advertisements_path, :min_length => 0, :"data-delimiter" => ', ' %>
 	</div>
 	
  	<div id="blurb_section">
@@ -57,7 +57,11 @@
 </div>
 
 <script>
-$('.ckeditor').ckeditor({
-  toolbar = 'Pure'
-});
+//$( document ).ready(function() {
+//	var minLength = $("#advertisement_tag_list").attr('name');
+//	alert(minLength);
+//});
+
+
+$('.ckeditor').ckeditor();
 </script>

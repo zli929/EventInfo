@@ -5,3 +5,8 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
+list = ['tag 1', 'tag 2', 'tag 3']
+
+list.each do |tag|
+  ActsAsTaggableOn::Tag.new(:name => tag).save
+end
