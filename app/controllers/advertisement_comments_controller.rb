@@ -21,9 +21,10 @@ class AdvertisementCommentsController < ApplicationController
       email_count = email_count+1
       advertisement.update_attribute(:email_count, email_count)
       
-      raise advertisement.to_yaml
-      
       advertisement.save!
+      
+      advertisement = Advertisement.find(params[:advertisement_comment][:advertisement_id])
+      raise advertisement.to_yaml
       
       flash[:success] = "Your message has been sent to " + poster.first_name + "!"
     end
