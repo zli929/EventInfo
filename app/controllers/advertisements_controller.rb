@@ -57,7 +57,8 @@ class AdvertisementsController < ApplicationController
   def show
     if params[:method] == 'delete'
       remove_listing(params[:id])
-      redirect_to root_url
+      flash[:success] = "Your advertisement has been removed!"
+      redirect_to root_url and return
     end
     
     @advertisement = Advertisement.find(params[:id])
