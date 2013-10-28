@@ -23,9 +23,6 @@ class AdvertisementCommentsController < ApplicationController
       
       advertisement.save!
       
-      advertisement = Advertisement.find(params[:advertisement_comment][:advertisement_id])
-      raise advertisement.to_yaml
-      
       flash[:success] = "Your message has been sent to " + poster.first_name + "!"
     end
     
