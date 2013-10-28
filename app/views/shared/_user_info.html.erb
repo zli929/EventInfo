@@ -9,12 +9,13 @@
   %>
   <ul class="categories-list">
   	<% main_categories = ['All', 'Books', 'Clothes', 'Electronics', 'Events', 'Personals', 'Services', 'Venture gear'] %>
+  	<% main_categories_lower = ['all', 'books', 'clothes', 'electronics', 'events', 'personals', 'services', 'venture gear'] %>
   	<% main_categories.each do |i|%>
   	  <li class="category-line"><%= link_to i, tag_path(i) %></li>
   	<% end %>
   	<hr>
 	<% @tags.each do |tag| %>
-	  <% unless tag.name.in?main_categories %>
+	  <% unless tag.name.in?main_categories_lower %>
 	  	<li class="category-line"><%= link_to tag, tag_path(tag.name) %></li>
 	  <% end %>
 	<% end %>
