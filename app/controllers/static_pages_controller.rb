@@ -5,6 +5,7 @@ class StaticPagesController < ApplicationController
     if signed_in?
       if params[:tag] && params[:tag] != 'All'
         @feed_items = Advertisement.where(status: true).tagged_with(params[:tag]).paginate(page: params[:page], :per_page => 25, :order => "updated_at DESC")
+        @tag_title = params[:tag]
       else 
         @feed_items = Advertisement.where(status: true).paginate(page: params[:page], :per_page => 25, :order => "updated_at DESC")
       end

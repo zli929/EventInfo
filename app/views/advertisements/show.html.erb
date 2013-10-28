@@ -57,7 +57,7 @@
 		<% if @advertisement.price == -1 %>	
 			N/A
 		<% else %>	
-			$ <%= @advertisement.price %>
+			<span class="price-dollar-sign">$</span><%= @advertisement.price %>
 		<% end %>	
 		</div>
 

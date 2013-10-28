@@ -1,7 +1,19 @@
-<h1 class="page-header">Penn listings</h1>
+<h1 class="page-header">
+<% if (@tag_title) %>
+	<%= @tag_title %>
+	<% provide(:title, @tag_title) %> 
+<% else %>
+	Penn listings
+<% end %>
+</h1>
+
+
+
 <% if @feed_items.any? %>
 <ol class="microposts">
 	<%= render partial: 'shared/feed_item', collection: @feed_items %>
 </ol>
 <%= will_paginate @feed_items %>
+<% else %>
+	<p>At the moment there are no listings in this category. Please come back later!</p>  
 <% end %>
