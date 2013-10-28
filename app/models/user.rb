@@ -68,7 +68,6 @@ class User < ActiveRecord::Base
         if user
           user.facebookuid = uid
         elsif valid_facebook_group?(token)
-          
           user = User.create(:first_name => first_name,
                      :last_name => last_name,
                      :facebookuid => uid,
