@@ -27,7 +27,7 @@
 	   	  <% end %>
 	    </div>
 	    <div class="feed-field-item feed-item-submitted">
-	    	<%= time_ago_in_words(feed_item.updated_at) %> ago by <%= feed_item.user.first_name %> <%= feed_item.user.last_name %>
+	    	<%= time_ago_in_words(feed_item.updated_at) %> ago by <%= feed_item.user.first_name %>
 	    </div>
 	  	<div class="admin-links">
 	  		<%= link_to "View / contact seller", feed_item, :class=> "btn btn-small" %>

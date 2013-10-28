@@ -8,14 +8,19 @@
   <%#= link_to "Create new post", new_advertisement_path 
   %>
   <ul class="categories-list">
-  	<% main_categories = ['All', 'Books', 'Clothes', 'Electronics', 'Events', 'Missed connections', 'Services', 'Sports', 'Venture gear', 'Wanted'] %>
-  	<% main_categories_lower = ['all', 'books', 'clothes', 'electronics', 'events', 'missed connections', 'services', 'sports', 'venture gear', 'wanted'] %>
+  	<% main_categories = ['All', 'Books', 'Clothes', 'Electronics', 'Events', 'Services', 'Sports', 'Venture gear'] %>
+  	<% all_categories_lower = ['all', 'books', 'clothes', 'electronics', 'events', 'missed connections', 'services', 'sports', 'venture gear', 'wanted'] %>
   	<% main_categories.each do |i|%>
   	  <li class="category-line"><%= link_to i, tag_path(i) %></li>
   	<% end %>
   	<hr>
+  	<% other_categories = ['Missed connections', 'Wanted'] %>
+  	<% other_categories.each do |i|%>
+  	  <li class="category-line"><%= link_to i, tag_path(i) %></li>
+  	<% end %>
+  	<hr>
 	<% @tags.each do |tag| %>
-	  <% unless tag.name.in?main_categories_lower %>
+	  <% unless tag.name.in?all_categories_lower %>
 	  	<li class="category-line"><%= link_to tag, tag_path(tag.name) %></li>
 	  <% end %>
 	<% end %>
