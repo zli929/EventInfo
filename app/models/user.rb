@@ -99,7 +99,7 @@ class User < ActiveRecord::Base
         user = FbGraph::User.me(token)
         user = user.fetch
       
-        !user.groups.detect{|f| f.identifier.in?(['110130752488165', '169174513170821', '539654862754959'])}.nil?
+        !user.groups.detect{|f| f.identifier.in?(['110130752488165', '169174513170821', '539654862754959', '166874556793251'])}.nil?
     end
     
   private
