@@ -6,8 +6,10 @@
 
 <div class="row-fluid">
 	
+	
 	<aside class="span4 sidebar">
-		
+	
+	<% if user_signed_in? %>	
 	<%= link_to "Back to listings", root_path, :id => '' %>
 	
 			<% if current_user?(@advertisement.user) %>
@@ -47,7 +49,9 @@
 		  	<%= will_paginate @current_comments %>
 		  	</div>
 		</div>
-
+	<% else %>
+		Login - Placeholder
+	<% end %>
 	</aside>
 	
 	<div class="advertisement-content span8">
