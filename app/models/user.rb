@@ -23,7 +23,7 @@ class User < ActiveRecord::Base
     uniqueness: { case_sensitive: false }  
 
   def email_validation_required?
-    facebookuid.nil?
+    facebookuid.nil? || nativelogin != false
   end
 
   VALID_EMAILS = %w(upenn.edu)
