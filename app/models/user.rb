@@ -76,7 +76,7 @@ class User < ActiveRecord::Base
                      :password_confirmation => password_placeholder,
                      :confirmed_at => Time.now,
                      :nativelogin => false,
-                     )      
+                     )    
         end
       end
     end

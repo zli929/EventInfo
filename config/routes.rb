@@ -2,7 +2,8 @@ EventInfo::Application.routes.draw do
   devise_for  :users, 
               :controllers => { :registrations => "users/registrations",
                                 :sessions => "users/sessions",
-                                :omniauth_callbacks => "users/omniauth_callbacks" }
+                                :omniauth_callbacks => "users/omniauth_callbacks",
+                                :confirmations => "users/confirmations" }
   devise_scope :user do
     match '/signin',  to: 'devise/sessions#new', via: [:get, :post]
     match '/signout', to: 'devise/sessions#destroy', via: :delete
@@ -28,7 +29,10 @@ EventInfo::Application.routes.draw do
       get :autocomplete_tag_name
     end
   end
-  resources :users
+  resources :users do
+    get 'single_signon_email_req', on: :new
+  end
+  
   resources :advertisement_comments, only:    [:create, :destroy]
 
   #match '/signup',  to: 'users#new'
