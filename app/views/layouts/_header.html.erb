@@ -18,6 +18,13 @@
       </div>
       
       <% if user_signed_in? %>
+       	<div class="pull-left facebook-header nav hidden-phone">
+       		<div class="fb-like" data-href="http://facebook.com/pennlist" data-height="18" data-colorscheme="light" data-layout="standard" data-action="like" data-show-faces="false" data-send="false"></div>
+      	</div>
+      <% end %>
+
+      
+      <% if user_signed_in? %>
       <div class="plus-sell-button pull-right hidden-desktop">
       	<%= link_to "+Add", new_advertisement_path, :class => "btn btn-danger" %>
       </div>
@@ -46,6 +53,8 @@
             <li><%= link_to "Sign in", signin_path %></li>
           <% end %>
         </ul>
+
+
       </nav>
       </div>
     </div>
