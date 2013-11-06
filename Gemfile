@@ -6,6 +6,9 @@ gem 'thin'
 
 # Use sqlite3 as the database for Active Record
 
+# Cron Jobs
+gem 'whenever', :require => false
+
 # Mail
 gem 'actionmailer'
 
