@@ -9,7 +9,7 @@
 	
 	<aside class="span4 sidebar">
 	
-	<% if user_signed_in? %>	
+	<% if user_signed_in? %>
 	<%= link_to "Back to listings", root_path, :id => '' %>
 	
 			<% if current_user?(@advertisement.user) %>
@@ -22,6 +22,22 @@
 		    </div>
 			<% end %>
 
+<h3>Share this listing</h3>
+
+<div class="content">
+	
+		<p>
+		<!-- AddThis Button BEGIN -->
+		<div class="addthis_toolbox addthis_default_style addthis_32x32_style">
+		<a class="addthis_button_facebook"></a>
+		<a class="addthis_button_email"></a>
+		<a class="addthis_button_compact"></a><a class="addthis addthis_bubble_style"></a>
+		</div>
+		<script type="text/javascript">var addthis_config = {"data_track_addressbar":true};</script>
+		<script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-4d93bd141f27ad04"></script>
+		<!-- AddThis Button END -->
+		<br></p>
+</div>
 	
 		<h3>Listing by <%= @advertisement.user.first_name %></h2>
 		
@@ -52,8 +68,9 @@
 	<% else %>
 		<h3>Contact seller</h3>
 		<div class="content">
-			<p>You need to sign in to PennList in order to contact the seller</p>
-			<p class="centered"><a href="/" class="btn btn-default btn-large">Sign in now</a></p>
+			<div>PennList is an exclusive market place for students, faculty and staff of the University of Pennsylvania. Buy and sell with confidence within the UPenn community!<br><br>
+			You need to sign in to PennList in order to contact the seller<br><br></div>
+			<p><a href="/" class="btn btn-default btn-large">Sign in</a></p>
 		</div> 
 	<% end %>
 	</aside>
