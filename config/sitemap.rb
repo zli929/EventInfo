@@ -19,9 +19,12 @@ SitemapGenerator::Sitemap.create do
   #
   #   add advertisements_path, :priority => 0.7, :changefreq => 'daily'
   #
-  # Add all articles:
-  #
-     Advertisement.find_each do |advertisement|
-       add advertisements_path(advertisement), :lastmod => advertisement.updated_at
-     end
+  # Add all advertisements:
+  add '/help'
+  add '/about'
+  add '/disclaimer'
+  add '/contact'
+  Advertisement.find_each do |advertisement|
+    add advertisement_path(advertisement), :lastmod => advertisement.updated_at
+  end
 end
