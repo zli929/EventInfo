@@ -22,6 +22,9 @@ gem 'bootstrap-sass', '2.1'
 gem 'will_paginate', '3.0.3'
 gem 'bootstrap-will_paginate', '0.0.6'
 
+# Site Map for Google Search
+gem 'sitemap_generator'
+
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.0'
 
