@@ -6,7 +6,7 @@
 	<meta property="og:description" content="Buy & sell with confidence from the UPenn Community! Textbooks, calculators, bikes, furniture and more."/>
     <meta property="og:url" content="http://www.pennList.co"/>
    	<% if content_for?(:ogimage) %>
-    	<!--<meta property="og:image" content="http://www.pennlist.co<%= image_path(yield(:ogimage)) %>">-->
+    <meta property="og:image" content="<%= image_path(yield(:ogimage)) %>">
     <% else %>
   	<meta property="og:image" content="http://www.pennlist.co<%= image_path('pennlist_fb_logo.png') %>">
     <% end %>
