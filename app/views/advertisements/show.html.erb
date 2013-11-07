@@ -96,6 +96,10 @@
   			<%= raw @advertisement.content %>
 		</div>
 		
+		<% if @advertisement.content %>
+		<% provide(:ogdescription, strip_tags(@advertisement.content).squish[0...200]) %>
+		<% end %>
+		
 		<% if @advertisement_images.any? %>
 			<% provide(:ogimage, @advertisement_images.first.image.url(:thumb)) %>
 			<%= render :partial => 'advertisement_image', collection: @advertisement_images %>
