@@ -5,7 +5,12 @@
     <meta property="og:title" content="PennList"/>
 	<meta property="og:description" content="Buy & sell with confidence from the UPenn Community! Textbooks, calculators, bikes, furniture and more."/>
     <meta property="og:url" content="http://www.pennList.co"/>
-    <meta property="og:image" content="http://www.pennlist.co<%= image_path('pennlist_fb_logo.png') %>">
+   	<% if content_for?(:ogimage) %>
+    	<!--<meta property="og:image" content="http://www.pennlist.co<%= image_path(yield(:ogimage)) %>">-->
+    <% else %>
+  	<meta property="og:image" content="http://www.pennlist.co<%= image_path('pennlist_fb_logo.png') %>">
+    <% end %>
+
     <META NAME="KEYWORDS" CONTENT="PennList, UPenn, Penn">
 	<META NAME="DESCRIPTION" CONTENT="Buy & sell with confidence from the UPenn Community! Textbooks, calculators, bikes, furniture and more.">
 	<META HTTP-EQUIV="CONTENT-LANGUAGE" CONTENT="EN">
