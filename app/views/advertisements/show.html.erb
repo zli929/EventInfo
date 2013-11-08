@@ -101,7 +101,7 @@
 		<% end %>
 		
 		<% if @advertisement_images.any? %>
-			<% provide(:ogimage, @advertisement_images.first.image.url(:thumb)) %>
+			<% provide(:ogimage, @advertisement_images.first.image.url(:large)) %>
 			<%= render :partial => 'advertisement_image', collection: @advertisement_images %>
 		<% end %>
 		
