@@ -1,0 +1,50 @@
+<%= form_for(@cab_departure) do |f| %>
+  <% if @cab_departure.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@cab_departure.errors.count, "error") %> prohibited this cab_departure from being saved:</h2>
+
+      <ul>
+      <% @cab_departure.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+<div class="row-fluid">
+  <div class="span4">
+	  <div class="field">
+	    <%= f.label :address, 'Starting address' %>
+	    <%= f.text_field :address %>
+	  </div>
+	  <div class="field">
+	    <%= f.label :destination, 'Where are you travelling to?' %>
+	    <%= f.select :destination, options_for_select(['Philadelphia International Airport']) %>
+	  </div>
+	  <div class="field">
+	    <%= f.label :location_buffer, 'At most I am willing to walk:' %>
+	    <%= f.select :location_buffer, options_for_select([['0.10 miles',0.1], ['0.25 miles', 0.25], ['0.50 miles',0.5]]) %>
+	  </div>
+	  <div class="field">
+	  	<%= f.label :time, 'When must you leave for your destination?' %>
+		<%= f.text_field :prop_date, :class => 'datepicker input-small'%>
+		@
+		<%= f.text_field :prop_time, :class => 'timepicker input-small'%>
+	  </div>
+	  <div class="field">
+	    <%= f.label :time_buffer, 'At most I am willing to leave:' %>
+	    <%= f.select :time_buffer, options_for_select([['15 min before my cutoff',15], ['30 min before my cutoff',30], ['1 hour before my cutoff',60]]) %>
+	  </div>
+	  <div class="actions">
+	    <%= f.submit class: "btn btn-default"  %>
+	  </div>
+  </div>
+</div>
+<% end %>
+
+<script type="text/javascript">
+	$('.datepicker').datepicker({
+		startDate: '+1d'
+	});
+	$('.timepicker').timepicker();
+</script>

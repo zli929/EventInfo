@@ -16,4 +16,6 @@
 //= require autocomplete-rails
 //= require ckeditor-jquery
 //= require bootstrap
+//= require bootstrap-datepicker/core
+//= require jquery.timepicker.js
 //= require_tree ./app_wide

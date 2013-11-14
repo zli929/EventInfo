@@ -4,6 +4,7 @@ class User < ActiveRecord::Base
   
   has_many :advertisements, dependent: :destroy
   has_many :advertisement_comments, dependent: :destroy
+  has_many :cab_departures, dependent: :destroy
   
   # :confirmable, 
   devise  :database_authenticatable, :registerable, :recoverable, :rememberable, 

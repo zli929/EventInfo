@@ -9,6 +9,13 @@ gem 'thin'
 # Cron Jobs
 gem 'whenever', :require => false
 
+# Cab_share
+gem 'geocoder'
+
+# Data Time Picker
+gem 'bootstrap-datepicker-rails'
+gem 'jquery-timepicker-rails'
+
 # Mail
 gem 'actionmailer'
 

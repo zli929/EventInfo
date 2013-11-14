@@ -24,6 +24,10 @@ EventInfo::Application.routes.draw do
     end
   end
   
+  resources :cab_departures do
+    get 'join' => 'cab_departures#join'
+  end
+  
   resources :advertisements do
     collection do
       get :autocomplete_tag_name
