@@ -9,7 +9,10 @@ class CabDeparturesController < ApplicationController
       @cab_departures = []
     else
       nearby_departees = @cab_departure.nearbys(@cab_departure.location_buffer)
-      @cab_departures = nearby_departees.where('time <= ?', @cab_departure.time)
+      @cab_departures = nearby_departees.where('cab_share_id IS NULL AND time <= ?', @cab_departure.time)
+      
+      nearby_cabs = CabShare.near(@cab_departure, @cab_departure.location_buffer)
+      @cab_shares = nearby_cabs.where('time <= ?', @cab_departure.time)
     end
   end
 
@@ -50,9 +53,28 @@ class CabDeparturesController < ApplicationController
   end
   
   def join
-    cab_departure = CabDeparture.find(params[:id])
+    # Note not always going to be Cab Departures... need to fix
     
-    raise params.to_yaml
+    joinee = CabDeparture.find(params[:joinee])
+    joiner = CabDeparture.find(params[:cab_departure_id])
+    
+    joiner.join(joinee)
+    
+    redirect_to joiner
+  end
+
+  def unjoin
+    leaver = CabDeparture.find(params[:cab_departure_id])
+    leaver.cab_share.remove(leaver)
+    
+    if leaver.cab_share.party_size == 0
+      leaver.cab_share.party.delete
+    end
+    
+    leaver.cab_share_id = nil
+    leaver.save!
+    
+    redirect_to leaver
   end
 
   def destroy
@@ -71,6 +93,6 @@ class CabDeparturesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def cab_departure_params
-      params.require(:cab_departure).permit(:address, :destination, :latitude, :longitude, :location_buffer, :time, :time_buffer)
+      params.require(:cab_departure).permit(:address, :destination, :latitude, :longitude, :location_buffer, :party_size, :time, :time_buffer)
     end
 end

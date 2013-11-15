@@ -52,7 +52,7 @@
 	        <td><%= cab_departure.get_departure_datetime %></td>
 	        <td><%= cab_departure.distance.round(2) %> miles </td>
 	        <td><%= link_to 'Show', cab_departure, :class=>"btn btn-small btn-warning" %></td>
-	        <td><%= link_to 'Join', cab_departure_join_path(@cab_departure.id, :to_join => cab_departure.id), :class=>"btn btn-small btn-warning", title: "Join this cab" %></td>
+	        <td><%= link_to 'Join', cab_departure_join_path(@cab_departure.id, :joinee => cab_departure.id), :class=>"btn btn-small btn-warning", title: "Join this cab" %></td>
 	      </tr>
 	    <% end %>
 	  </tbody>

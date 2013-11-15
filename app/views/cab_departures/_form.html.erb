@@ -35,6 +35,10 @@
 	    <%= f.label :time_buffer, 'At most I am willing to leave:' %>
 	    <%= f.select :time_buffer, options_for_select([['15 min before my cutoff',15], ['30 min before my cutoff',30], ['1 hour before my cutoff',60]]) %>
 	  </div>
+	  <div class="field">
+	    <%= f.label :party_size, 'How many are in your party' %>
+	    <%= f.select :party_size, options_for_select([[1,1], [2,2], [3,3]]) %>
+	  </div>
 	  <div class="actions">
 	    <%= f.submit class: "btn btn-default"  %>
 	  </div>
