@@ -2,11 +2,12 @@ class CabDeparture < ActiveRecord::Base
   belongs_to :user
   belongs_to :cab_share
   
-  attr_accessor :prop_date, :prop_time, :cab_departure_coordinates
+
+  attr_accessor :prop_date, :prop_time, :google_coordinates
     
   geocoded_by :address
   after_validation :geocode, :if => :address_changed?
-  
+  # after_validation :reverse_geocode, :if => :long_changed?  STILL THROWING AN ERROR
   
   def get_departure_datetime
     utc_time = time + ActiveSupport::TimeZone['Eastern Time (US & Canada)'].utc_offset.seconds
@@ -14,6 +15,9 @@ class CabDeparture < ActiveRecord::Base
   end
   
   def join(joinee)
+    
+    
+    
     # Test to see if the party sizes are going to be a problem
     if self.party_size + joinee.party_size < 5
       

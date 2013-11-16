@@ -4,7 +4,7 @@ class CabDeparturesController < ApplicationController
   
   def show
     # Show display time for the user's departure
-    if @cab_departure.latitude.nil? || @cab_departure.longitude.nil? 
+    if @cab_departure.latitude.nil? || @cab_departure.longitude.nil?
       flash[:error] = 'You have not entered a valid address'
       @cab_departures = []
     else
@@ -23,9 +23,16 @@ class CabDeparturesController < ApplicationController
   def create
     #### BUG - GEOCODE FAILS WHEN YOU ENTER A WRONG ADDRESS ####
     
-    params[:cab_departure][:address] = params[:cab_departure][:address] +" Philadelphia, PA"
-    
-   # raise params[:cab_departure][:address].to_yaml
+    # IF map coordinates exists and is not the default value, than use coordinates
+    if params[:cab_departure][:google_coordinates] != "" && params[:cab_departure][:google_coordinates] != "(39.95023044499703, -75.17170786857605)"
+            params[:cab_departure][:address] = params[:cab_departure][:google_coordinates]
+    else
+            
+            if params[:cab_departure][:address] != ""
+               params[:cab_departure][:address] = params[:cab_departure][:address] +" Philadelphia, PA"
+            end
+    end
+    # raise params[:cab_departure][:address].to_yaml
 
     
     @cab_departure = current_user.cab_departures.build(cab_departure_params)
