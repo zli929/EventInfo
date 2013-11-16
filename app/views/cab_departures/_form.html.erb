@@ -11,12 +11,32 @@
     </div>
   <% end %>
 
+
+<h2>Enter your address or click the departure point on the map</h2>
 <div class="row-fluid">
   <div class="span4">
 	  <div class="field">
-	    <%= f.label :address, 'Starting address' %>
+	    <!--<%= f.label :address, 'Starting address' %>-->
 	    <%= f.text_field :address %>
+	    <p class="form-hint">Please enter only your street address or cross streets (e.g., 1500 Locust, 15th and Locust)</p>
 	  </div>
+  </div>
+</div>
+
+<div class="row-fluid">
+	<div class="span6">
+		<div id="map-canvas"></div>
+	</div>
+</div>
+
+<div>
+<label for="cap_departure_coordinates">Google maps coordinates (to be a hidden field in production)</label>
+<input type="text" id="cap_departure_coordinates">
+</div>
+
+
+<div class="row-fluid">
+	<div class="span4">
 	  <div class="field">
 	    <%= f.label :destination, 'Where are you travelling to?' %>
 	    <%= f.select :destination, options_for_select(['Philadelphia International Airport']) %>

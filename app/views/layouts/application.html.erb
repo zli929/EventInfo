@@ -32,7 +32,49 @@
     <%= csrf_meta_tags %>
     
     <%= render 'layouts/shim' %>
-    <%= yield(:head) %>    
+    <%= yield(:head) %>
+    
+	    <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false"></script>
+    <script>
+    
+	var marker;
+
+function initialize() {
+  var mapOptions = {
+    zoom: 16,
+    center: new google.maps.LatLng(39.95023044499703, -75.17170786857605),
+    mapTypeId: google.maps.MapTypeId.ROADMAP
+  };
+  var map = new google.maps.Map(document.getElementById('map-canvas'),
+      mapOptions);
+
+  google.maps.event.addListener(map, 'click', function(e) {
+    placeMarker(e.latLng, map);
+  });
+}
+
+function placeMarker(position, map) {
+	
+	if (marker) {
+        //if marker already was created change positon
+        marker.setPosition(position);
+    } else {
+    	
+  		marker = new google.maps.Marker({
+    	position: position,
+    	map: map,
+    	draggable: true
+  });
+  //markers.push(marker);
+	}
+	document.getElementById('cap_departure_coordinates').value = position;
+}
+
+google.maps.event.addDomListener(window, 'load', initialize);
+
+    </script>
+    
+        
   </head>
   <% unless current_user.nil? %>
 	  <% unless %w(johnli@wharton.upenn.edu zhoujeff@wharton.upenn.edu ibe@wharton.upenn.edu).include?current_user.email  %>
