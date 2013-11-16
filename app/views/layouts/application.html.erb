@@ -22,7 +22,7 @@
 	<META HTTP-EQUIV="CONTENT-LANGUAGE" CONTENT="EN">
 	<META NAME="revisit-after" CONTENT="14 days">
 	<META NAME="robots" CONTENT="all">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0<% if (content_for?(:page_is_form)) %>, maximum-scale=1.0, user-scalable=no<% end %>">
 	
 	<link rel="icon" type="image/x-icon" href=<%= image_path('favicon.ico') %> />
 		
@@ -34,6 +34,9 @@
     <%= render 'layouts/shim' %>
     <%= yield(:head) %>
     
+    
+<% if (content_for?(:page_is_form)) and (yield(:page_is_form) == "cab_departures") %>
+
 	    <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false"></script>
     <script>
     
@@ -74,7 +77,8 @@ function placeMarker(position, map) {
 google.maps.event.addDomListener(window, 'load', initialize);
 
     </script>
-    
+
+<% end %>
         
   </head>
   <% unless current_user.nil? %>
