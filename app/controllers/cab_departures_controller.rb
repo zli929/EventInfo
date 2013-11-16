@@ -9,10 +9,7 @@ class CabDeparturesController < ApplicationController
       @cab_departures = []
     else
       nearby_departees = @cab_departure.nearbys(@cab_departure.location_buffer)
-      @cab_departures = nearby_departees.where('cab_share_id IS NULL AND time <= ?', @cab_departure.time)
-      
-      nearby_cabs = CabShare.near(@cab_departure, @cab_departure.location_buffer)
-      @cab_shares = nearby_cabs.where('time <= ?', @cab_departure.time)
+      @cab_departures = nearby_departees.where('time <= ?', @cab_departure.time)
     end
   end
 
@@ -25,6 +22,11 @@ class CabDeparturesController < ApplicationController
 
   def create
     #### BUG - GEOCODE FAILS WHEN YOU ENTER A WRONG ADDRESS ####
+    
+    params[:cab_departure][:address] = params[:cab_departure][:address] +" Philadelphia, PA"
+    
+  # raise params[:cab_departure][:address].to_yaml
+
     
     @cab_departure = current_user.cab_departures.build(cab_departure_params)
     @cab_departure.time = DateTime.strptime(params[:cab_departure][:prop_date] + " " + params[:cab_departure][:prop_time], "%m/%d/%Y %l:%M%p") - -18000.seconds
@@ -53,28 +55,9 @@ class CabDeparturesController < ApplicationController
   end
   
   def join
-    # Note not always going to be Cab Departures... need to fix
+    cab_departure = CabDeparture.find(params[:id])
     
-    joinee = CabDeparture.find(params[:joinee])
-    joiner = CabDeparture.find(params[:cab_departure_id])
-    
-    joiner.join(joinee)
-    
-    redirect_to joiner
-  end
-
-  def unjoin
-    leaver = CabDeparture.find(params[:cab_departure_id])
-    leaver.cab_share.remove(leaver)
-    
-    if leaver.cab_share.party_size == 0
-      leaver.cab_share.party.delete
-    end
-    
-    leaver.cab_share_id = nil
-    leaver.save!
-    
-    redirect_to leaver
+    raise params.to_yaml
   end
 
   def destroy
@@ -93,6 +76,6 @@ class CabDeparturesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def cab_departure_params
-      params.require(:cab_departure).permit(:address, :destination, :latitude, :longitude, :location_buffer, :party_size, :time, :time_buffer)
+      @cab_deeparture_params ||= params.require(:cab_departure).permit(:address, :destination, :latitude, :longitude, :location_buffer, :time, :time_buffer)
     end
 end
