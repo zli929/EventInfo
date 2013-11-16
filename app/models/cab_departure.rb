@@ -2,7 +2,7 @@ class CabDeparture < ActiveRecord::Base
   belongs_to :user
   belongs_to :cab_share
   
-  attr_accessor :prop_date, :prop_time
+  attr_accessor :prop_date, :prop_time, :google_coordinates
     
   geocoded_by :address
   after_validation :geocode, :if => :address_changed?
