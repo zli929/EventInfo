@@ -19,9 +19,10 @@
   <div class="span4">
 	  <div class="field">
 	    <!--<%= f.label :address, 'Starting address' %>-->
-	    <%= f.text_field :address %>
-	    <p class="form-hint">Street address or cross streets (e.g. 1500 Locust, 15th and Locust)</p>
+	    <%= f.text_field :address, :required => true %>
 	  </div>
+	  <div id="cab_departure_address_error"></div>
+	  <p class="form-hint">Street address or cross streets (e.g. 1500 Locust, 15th and Locust)</p>
   </div>
 </div>
 
@@ -50,10 +51,11 @@
 	  </div>
 	  <div class="field">
 	  	<%= f.label :time, 'Time I would like to leave for the airport:' %>
-		<%= f.text_field :prop_date, :class => 'datepicker input-small'%>
+		<%= f.text_field :prop_date, :required => true, :class => 'datepicker input-small'%>
 		@
-		<%= f.text_field :prop_time, :class => 'timepicker input-small'%>
+		<%= f.text_field :prop_time, :required => true, :class => 'timepicker input-small'%>
 	  </div>
+	  <div id="cab_departure_address_error"></div>
 	  <div class="field">
 	    <%= f.label :time_buffer, 'I am willing to leave X minutes earlier to share a cab' %>
 	    <%= f.select :time_buffer, options_for_select([['0 minutes',0],['Up to 15 minutes',15], ['Up to 30 minutes',30], ['Up to 45 minutes',60]]) %>
@@ -63,7 +65,7 @@
 	    <%= f.select :party_size, options_for_select([['Just me',1], ['Me + 1 other',2], ['Me + 2 others',3]]) %>
 	  </div>
 	  <div class="actions">
-	    <%= f.submit class: "btn btn-default"  %>
+	    <%= f.submit "Go!", class: "btn btn-default"  %>
 	  </div>
   </div>
 </div>

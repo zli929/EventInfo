@@ -68,15 +68,66 @@ function placeMarker(position, map) {
     	map: map,
     	draggable: true
   });
-  //markers.push(marker);
+  
 	}
 
 	document.getElementById('cab_departure_google_coordinates').value = position;
+	document.getElementById('cab_departure_address').removeAttribute('required');
 }
 
 google.maps.event.addDomListener(window, 'load', initialize);
 
+
+
     </script>
+    
+<script>
+/*
+	 $(document).ready(function(){$('#new_cab_departure').validate({
+	alert('!!!');
+    debug: true,
+    rules: {
+        "cab_departure[address]": "required",
+    },
+    messages: {
+        "cab_departure[address]": "Please specify your address", 
+    },
+    errorPlacement: function(error, element) {
+        if ( element.is(":radio") )
+            error.appendTo( element.parent().next());//if its a radio button
+        else if ( element.is(":checkbox") )
+            error.appendTo ( element.next() );//if its a radio button
+        else
+            error.appendTo( element.parent().next() );
+    },
+});
+});
+*/
+
+</script>
+
+<script>
+/*$.validator.setDefaults({
+	//submitHandler: function() { alert("submitted!"); }
+});
+*/
+$().ready(function() {
+	// validate the comment form when it is submitted
+	$("#new_cab_departure").validate({
+    rules: {
+        //"cab_departure[address]": "required",
+    },
+    messages: {
+        "cab_departure[address]": "Please specify your address or pin it on the map", 
+        "cab_departure[prop_date]": "Please specify departure date",
+        "cab_departure[prop_time]": "Please specify departure time",
+    },
+    errorPlacement: function(error, element) {
+            error.appendTo( element.parent().next() );
+    },
+});
+});
+</script>
 
 <% end %>
         

@@ -19,3 +19,6 @@
 //= require bootstrap-datepicker/core
 //= require jquery.timepicker.js
 //= require_tree ./app_wide
+
+//= require jquery.validate
+//= require jquery.validate.additional-methods
