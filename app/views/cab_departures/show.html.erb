@@ -5,13 +5,13 @@
 	<h2> Your Location</h2>
 	<p id="notice"><%= notice %></p>
 	<p>
-	  <strong>Address:</strong>
+	  <strong>Leaving from</strong>
 	  	<!-- <%= @cab_departure.address %><br> -->
 		<%= image_tag "http://maps.google.com/maps/api/staticmap?size=350x300&sensor=false&zoom=16&markers=#{@cab_departure.latitude}%2C#{@cab_departure.longitude}" %>
 	</p>
 	<p>
-	  <strong>Location buffer:</strong>
-	  <%= @cab_departure.location_buffer %> miles
+	  <strong>Willing to walk:</strong>
+	  <%= @cab_departure.location_buffer %> blocks
 	</p>
 	
 	<p>
@@ -20,14 +20,14 @@
 	</p>
 	
 	<p>
-	  <strong>Time buffer:</strong>
+	  <strong>Able to leave early:</strong>
 	  <%= @cab_departure.time_buffer %> minutes
 	</p>
 	
 	<%= link_to 'Edit', edit_cab_departure_path(@cab_departure) %> 
 </aside>
 <section class="span9">
-	<h2>Others departing in your area and time frame</h2>
+	<h2>Other cabs leaving around your time</h2>
 	<!-- To be replaced with something better looking than a table -->
 	<table>
 	  <thead>
@@ -52,7 +52,7 @@
 	        <td><%= cab_departure.get_departure_datetime %></td>
 	        <td><%= cab_departure.distance.round(2) %> miles </td>
 	        <td><%= link_to 'Show', cab_departure, :class=>"btn btn-small btn-warning" %></td>
-	        <td><%= link_to 'Join', cab_departure_join_path(@cab_departure.id, :joinee => cab_departure.id), :class=>"btn btn-small btn-warning", title: "Join this cab" %></td>
+	        <td><%= link_to 'Join', cab_departure_join_path(@cab_departure.id, :joinee => cab_departure.id), :class=>"btn btn-small btn-warning", title: "Join" %></td>
 	      </tr>
 	    <% end %>
 	  </tbody>
