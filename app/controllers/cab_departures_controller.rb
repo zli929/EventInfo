@@ -32,7 +32,7 @@ class CabDeparturesController < ApplicationController
                params[:cab_departure][:address] = params[:cab_departure][:address] +" Philadelphia, PA"
             end
     end
-    raise params[:cab_departure][:address].to_yaml
+    # raise params[:cab_departure][:address].to_yaml
 
     
     @cab_departure = current_user.cab_departures.build(cab_departure_params)
