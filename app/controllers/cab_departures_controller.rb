@@ -62,9 +62,10 @@ class CabDeparturesController < ApplicationController
   end
   
   def join
-    cab_departure = CabDeparture.find(params[:id])
+    joinee = CabDeparture.find(params[:joinee])
+    joiner = CabDeparture.find(params[:cab_departure_id])
     
-    raise params.to_yaml
+    joiner.join(joinee)
   end
 
   def destroy
@@ -83,6 +84,7 @@ class CabDeparturesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def cab_departure_params
-      @cab_deeparture_params ||= params.require(:cab_departure).permit(:address, :destination, :latitude, :longitude, :location_buffer, :time, :time_buffer)
+      @cab_deeparture_params ||= params.require(:cab_departure).permit(:address, :destination, :latitude, :longitude, 
+         :location_buffer, :time, :time_buffer, :party_size)
     end
 end
