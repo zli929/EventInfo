@@ -64,7 +64,7 @@ class CabDeparturesController < ApplicationController
   def join
     cab_departure = CabDeparture.find(params[:id])
     
-    raise params.to_yaml
+    # raise params.to_yaml
   end
 
   def destroy
