@@ -549,3 +549,21 @@ label.error {
 
 input.error {
 }
+
+
+.cab-content {
+    table {
+      width: 100%;
+    } 
+    
+    td, th {
+      text-align: center;
+      padding-top: 3px;
+      padding-bottom: 3px;
+    }
+    
+    .table-striped tbody > tr:nth-child(odd) > td, .table-striped tbody > tr:nth-child(odd) > th {
+      background-color: #f9f9f9;
+    }
+    
+}

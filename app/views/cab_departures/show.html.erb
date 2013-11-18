@@ -11,7 +11,7 @@
 	</p>
 	<p>
 	  <strong>Willing to walk:</strong>
-	  <%= @cab_departure.location_buffer %> blocks
+	  <%= (@cab_departure.location_buffer*8).round(0) %> block<% if @cab_departure.location_buffer*8 > 1 %>s<% end %>
 	</p>
 	
 	<p>
@@ -21,24 +21,24 @@
 	
 	<p>
 	  <strong>Able to leave early:</strong>
-	  <%= @cab_departure.time_buffer %> minutes
+	  <%= @cab_departure.time_buffer.round(0) %> minutes
 	</p>
 	
 	<%= link_to 'Edit', edit_cab_departure_path(@cab_departure) %> 
 </aside>
-<section class="span9">
+<section class="span9 cab-content">
 	<h2>Other cabs leaving around your time</h2>
 	<!-- To be replaced with something better looking than a table -->
-	<table>
+	<table class="table-striped">
 	  <thead>
 	    <tr>
-	      <th>First Name</th>
-	      <th>Location buffer</th>
+	      <th>Name</th>
+	      <th>Willing to walk</th>
 	      <th>Time</th>
-	      <th>Time buffer</th>
+	      <th>Leave early</th>
 	      <th>Distance</th>
 	      <th></th>
-	      <th></th>
+	      <!--<th></th>-->
 	      <th></th>
 	    </tr>
 	  </thead>
@@ -47,11 +47,11 @@
 	    <% @cab_departures.each do |cab_departure| %>
 	      <tr>
 	        <td><%= cab_departure.user.first_name %></td>
-	        <td><%= cab_departure.location_buffer %></td>
-	        <td><%= cab_departure.time %></td>
+	        <td><%= (cab_departure.location_buffer*8).round(0) %> block<% if cab_departure.location_buffer*8 > 1 %>s<% end %></td>
 	        <td><%= cab_departure.get_departure_datetime %></td>
+	        <td><% if cab_departure.time_buffer>0 %>-<%= cab_departure.time_buffer.round(0) %> min<% else %>-<% end %></td>
 	        <td><%= cab_departure.distance.round(2) %> miles </td>
-	        <td><%= link_to 'Show', cab_departure, :class=>"btn btn-small btn-warning" %></td>
+	        <!--<td><%= link_to 'Show', cab_departure, :class=>"btn btn-small btn-warning" %></td>-->
 	        <td><%= link_to 'Join', cab_departure_join_path(@cab_departure.id, :joinee => cab_departure.id), :class=>"btn btn-small btn-warning", title: "Join" %></td>
 	      </tr>
 	    <% end %>
