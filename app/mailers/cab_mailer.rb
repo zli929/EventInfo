@@ -4,7 +4,7 @@ class CabMailer < ActionMailer::Base
   def cab_update(status, cab_share, joiner)
     recipients = ''
     cab_share.cab_departures.each do |cab_departee|
-      recipients = recipients + cab_departee.user.name + " <"+cab_departee.user.email+"> "
+      recipients = recipients + cab_departee.user.name + " <"+cab_departee.user.email+">, "
     end
     
     @participants = cab_share

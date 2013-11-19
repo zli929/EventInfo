@@ -3,19 +3,19 @@
 
 <p>
 	<% if @status %>
-		<%= @joiner.user.first_name %> has joined your cab! There are now <%= @participants.party_size %> in your cab.
+		<%= @joiner.user.first_name %> has joined your cab! There are now <%= @participants.party_size %> people in your cab.
 	<% end %>
 </p>
 
 <p>
 	<% if !@status %>
-		<%= @joiner.user.first_name %> has left your cab. There are now <%= @participants.party_size %> in your cab.
+		<%= @joiner.user.first_name %> has left your cab. There are now <%= @participants.party_size %> people in your cab.
 	<% end %>
 </p>
 
 <p>Just a reminder, your cab is leaving at <%= @participants.get_departure_datetime %>
 	<% if @participants.address.chars.length >0 %> from <%= @participants.address%>
-	<% end %>!</p>
+	<% end %></p>
 
 
 <p><a href="http://www.pennlist.co/">Go to my cab!</a></p>
