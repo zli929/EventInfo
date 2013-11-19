@@ -60,6 +60,8 @@ class CabDeparturesController < ApplicationController
   end
 
   def update
+    params[:cab_departure][:address] = params[:cab_departure][:google_coordinates]
+    
     respond_to do |format|
       if @cab_departure.update(cab_departure_params)
         format.html { redirect_to @cab_departure, notice: 'Cab departure was successfully updated.' }
