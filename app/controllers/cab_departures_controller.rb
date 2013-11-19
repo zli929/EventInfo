@@ -12,7 +12,8 @@ class CabDeparturesController < ApplicationController
       
     else
       nearby_departees = @cab_departure.nearbys(@cab_departure.location_buffer)
-      @cab_departures = nearby_departees.where('party_size < ? AND cab_share_id IS NULL AND time <= ?', 5-@cab_departure.party_size, @cab_departure.time)
+      @cab_departures = nearby_departees.where('user_id != ? AND party_size < ? AND cab_share_id IS NULL AND time <= ?', 
+                    current_user.id, 5-@cab_departure.party_size, @cab_departure.time)
 
       nearby_cabs = CabShare.near(@cab_departure, @cab_departure.location_buffer)
       @cab_shares = @cab_departure.cab_share_id.nil? ? nearby_cabs.where('party_size < ? AND time <= ?', 5-@cab_departure.party_size, @cab_departure.time) 
@@ -88,7 +89,7 @@ class CabDeparturesController < ApplicationController
     current_departee.cab_share = nil
     current_departee.save!
     
-    CabMailer.cab_update('joining', joiner.cab_share, joiner).deliver
+    CabMailer.cab_update('joining', current_cab, current_departee).deliver
     
     redirect_to current_departee
   end
