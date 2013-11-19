@@ -60,7 +60,7 @@
 	  <div id="cab_departure_address_error"></div>
 	  <div class="field">
 	    <%= f.label :time_buffer, 'I am willing to leave earlier to share a cab' %>
-	    <%= f.select :time_buffer, options_for_select([['0 minutes',0],['Up to 15 minutes',15], ['Up to 30 minutes',30], ['Up to 45 minutes',60]]) %>
+	    <%= f.select :time_buffer, options_for_select([['0 minutes',0],['Up to 30 minutes',30], ['Up to 1 hour',60]]) %>
 	  </div>
 	  <div class="field">
 	    <%= f.label :party_size, 'Who is traveling:' %>
