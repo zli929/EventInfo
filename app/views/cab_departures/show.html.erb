@@ -2,6 +2,7 @@
 <h1 class="page-header">Relevant Departures</h1>
 <div class="row-fluid">
 <aside class="span3 sidebar">
+<<<<<<< HEAD
 	<% if !@cab_departure.cab_share.nil? %>
 		<h2>Current Cab Share</h2>
 		<strong>Participents</strong>
@@ -10,7 +11,7 @@
 			<% end %>
 		<%= link_to 'Leave', cab_departure_leave_path(@cab_departure.id, :cab => @cab_departure.cab_share.id), :class=>"btn btn-small btn-warning", title: "Leave this cab" %>	
 	<% end %>
-	<h2>Your Location</h2>
+	<h2>My cab details:</h2>
 	<p>
 	  <strong>Leaving from</strong>
 	  	<!-- <%= @cab_departure.address %><br> -->

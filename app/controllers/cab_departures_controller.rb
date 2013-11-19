@@ -71,6 +71,9 @@ class CabDeparturesController < ApplicationController
     joinee = params[:type] == 'existing_share' ? CabShare.find(params[:joinee]) : CabDeparture.find(params[:joinee])
     
     joiner = CabDeparture.find(params[:cab_departure_id])
+
+    @cab_joinee = joinee
+    @cab_joiner = joiner
     joiner.join(joinee)
     
     redirect_to joiner
