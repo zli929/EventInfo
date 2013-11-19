@@ -1,7 +1,7 @@
 EventInfo::Application.configure do
   # Settings specified here will take precedence over those in config/application.rb.
 
-  config.assets.precompile += ['appointments/index.js']
+  config.assets.precompile += ['appointments/index.js, jquery.ui.theme.css']
 
   config.paperclip_defaults = {
     :storage => :s3,
