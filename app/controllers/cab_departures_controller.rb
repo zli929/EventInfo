@@ -12,10 +12,13 @@ class CabDeparturesController < ApplicationController
       
     else
       nearby_departees = @cab_departure.nearbys(@cab_departure.location_buffer)
-      @cab_departures = nearby_departees.where('cab_share_id IS NULL AND time <= ?', @cab_departure.time)
+      @cab_departures = nearby_departees.where('party_size < ? AND cab_share_id IS NULL AND time <= ?', 5-@cab_departure.party_size, @cab_departure.time)
 
       nearby_cabs = CabShare.near(@cab_departure, @cab_departure.location_buffer)
-      @cab_shares = @cab_departure.cab_share_id.nil? ? nearby_cabs.where('time <= ?',  @cab_departure.time) : nearby_cabs.where('id <> ? AND time <= ?',@cab_departure.cab_share_id,  @cab_departure.time)  
+      @cab_shares = @cab_departure.cab_share_id.nil? ? nearby_cabs.where('party_size < ? AND time <= ?', 5-@cab_departure.party_size, @cab_departure.time) 
+                     : nearby_cabs.where('party_size < ? AND id <> ? AND time <= ?',
+                     5-@cab_departure.cab_share.party_size, @cab_departure.cab_share_id,  
+                     @cab_departure.time)  
     end
   end
 
@@ -69,12 +72,10 @@ class CabDeparturesController < ApplicationController
   
   def join
     joinee = params[:type] == 'existing_share' ? CabShare.find(params[:joinee]) : CabDeparture.find(params[:joinee])
-    
     joiner = CabDeparture.find(params[:cab_departure_id])
-
-    @cab_joinee = joinee
-    @cab_joiner = joiner
     joiner.join(joinee)
+    
+    CabMailer.cab_update(joiner.cab_share, joiner).deliver
     
     redirect_to joiner
   end

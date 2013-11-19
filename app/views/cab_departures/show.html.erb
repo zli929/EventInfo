@@ -27,10 +27,10 @@
 	  <%= @cab_departure.get_departure_datetime %>
 	</p>
 	
-	<!-- <p>
+	<p>
 	   <strong>Able to leave </strong>
-	  <%= @cab_departure.time_buffer.round(0) %> minutes early 
-	</p> -->
+	  <%= @cab_departure.party_size %> minutes early 
+	</p>
 	
 	<%= link_to 'Edit', edit_cab_departure_path(@cab_departure) %> 
 </aside>

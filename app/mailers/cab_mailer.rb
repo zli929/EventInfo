@@ -1,19 +1,16 @@
 class CabMailer < ActionMailer::Base
   default from: 'notifications@pennlist.co'
   
-  def cab_update(original_owner, joiner, join_or_leave)
+  def cab_update(status, cab_share, joiner)
+    recipients = ''
+    cab_share.cab_departures.each do |cab_departee|
+      recipients = recipients + cab_departee.user.name + " <"+cab_departee.user.email+"> "
+    end
     
-    
-    @cab_departure = joiner
-    @cab_share = original_owner
-    @messager = joiner.user
-    @poster = original_owner.user
-    @joining_cab = join_or_leave
-    
-    if joining_cab
-    mail(:to => "#{@poster.name} <#{@poster.email}>", :subject => "#{@messager.name}has joined your cab!", :from => "#{@messager.name} <#{@messager.email}>")
+    if status == 'joining_cab'
+      mail(:to => recipients, :subject => "#{joiner.name}has joined your cab!", :from => "#{joiner.name} <#{joiner.email}>")
     else
-    mail(:to => "#{@poster.name} <#{@poster.email}>", :subject => "#{@messager.name}has joined your cab!", :from => "#{@messager.name} <#{@messager.email}>")
+      mail(:to => recipients, :subject => "#{joiner.name}has left your cab!", :from => "#{joiner.name} <#{joiner.email}>")
     end
   end
 end

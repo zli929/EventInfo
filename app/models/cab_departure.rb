@@ -59,7 +59,6 @@ class CabDeparture < ActiveRecord::Base
               cab_departure.cab_share = joinee
               cab_departure.save!
             end
-            
             existing_cab.delete
           end
         else
