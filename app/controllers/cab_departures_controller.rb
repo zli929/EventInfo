@@ -75,7 +75,7 @@ class CabDeparturesController < ApplicationController
     joiner = CabDeparture.find(params[:cab_departure_id])
     joiner.join(joinee)
     
-    CabMailer.cab_update(joiner.cab_share, joiner).deliver
+    CabMailer.cab_update('joining', joiner.cab_share, joiner).deliver
     
     redirect_to joiner
   end
@@ -87,6 +87,8 @@ class CabDeparturesController < ApplicationController
     
     current_departee.cab_share = nil
     current_departee.save!
+    
+    CabMailer.cab_update('joining', joiner.cab_share, joiner).deliver
     
     redirect_to current_departee
   end
