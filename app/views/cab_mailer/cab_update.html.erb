@@ -14,7 +14,7 @@
 </p>
 
 <p>Just a reminder, your cab is leaving at <%= @participants.time%>
-	<% if cab_share.address.chars.length >0 %> from <%= @participants.address%>
+	<% if @participants.address.chars.length >0 %> from <%= @participants.address%>
 	<% end %>!</p>
 
 
