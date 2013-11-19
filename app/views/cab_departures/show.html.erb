@@ -6,7 +6,7 @@
 		<h2>Current Cab Share</h2>
 		<strong>Participents</strong>
 			<% @cab_departure.cab_share.cab_departures.each do |participant| %>
-				<p><%= participant.user.name %></p>
+				<p><%= mail_to participant.user.email, participant.user.name %></p>
 			<% end %>
 		<%= link_to 'Leave', cab_departure_leave_path(@cab_departure.id, :cab => @cab_departure.cab_share.id), :class=>"btn btn-small btn-warning", title: "Leave this cab" %>	
 	<% end %>
@@ -15,12 +15,11 @@
 	<p>
 	  <strong>Leaving from</strong>
 	  	<!-- <%= @cab_departure.address %><br> -->
-	  	
-	<% if @cab_departure.cab_share.nil? %>
-		<%= image_tag "http://maps.google.com/maps/api/staticmap?size=350x300&sensor=false&zoom=16&markers=#{@cab_departure.latitude}%2C#{@cab_departure.longitude}" %>
-	<% else %>
-		<%= image_tag "http://maps.google.com/maps/api/staticmap?size=350x300&sensor=false&zoom=16&markers=#{@cab_departure.cab_share.latitude}%2C#{@cab_departure.cab_share.longitude}" %>
-	<% end %>	
+		<% if @cab_departure.cab_share.nil? %>
+			<%= image_tag "http://maps.google.com/maps/api/staticmap?size=350x300&sensor=false&zoom=16&markers=#{@cab_departure.latitude}%2C#{@cab_departure.longitude}" %>
+		<% else %>
+			<%= image_tag "http://maps.google.com/maps/api/staticmap?size=350x300&sensor=false&zoom=16&markers=#{@cab_departure.cab_share.latitude}%2C#{@cab_departure.cab_share.longitude}" %>
+		<% end %>	
 	</p>
 	<p>
 	  <strong>Willing to walk:</strong>
