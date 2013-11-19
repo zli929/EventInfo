@@ -2,14 +2,20 @@ class CabDeparturesController < ApplicationController
   before_action :set_cab_departure, only: [:show, :edit, :update, :destroy]
   before_filter :signed_in_user
   
+  
   def show
     # Show display time for the user's departure
+    
     if @cab_departure.latitude.nil? || @cab_departure.longitude.nil?
       flash[:error] = 'You have not entered a valid address'
       @cab_departures = []
+      
     else
       nearby_departees = @cab_departure.nearbys(@cab_departure.location_buffer)
-      @cab_departures = nearby_departees.where('time <= ?', @cab_departure.time)
+      @cab_departures = nearby_departees.where('cab_share_id IS NULL AND time <= ?', @cab_departure.time)
+
+      nearby_cabs = CabShare.near(@cab_departure, @cab_departure.location_buffer)
+      @cab_shares = @cab_departure.cab_share_id.nil? ? nearby_cabs.where('time <= ?',  @cab_departure.time) : nearby_cabs.where('id <> ? AND time <= ?',@cab_departure.cab_share_id,  @cab_departure.time)  
     end
   end
 
@@ -62,10 +68,23 @@ class CabDeparturesController < ApplicationController
   end
   
   def join
-    joinee = CabDeparture.find(params[:joinee])
-    joiner = CabDeparture.find(params[:cab_departure_id])
+    joinee = params[:type] == 'existing_share' ? CabShare.find(params[:joinee]) : CabDeparture.find(params[:joinee])
     
+    joiner = CabDeparture.find(params[:cab_departure_id])
     joiner.join(joinee)
+    
+    redirect_to joiner
+  end
+
+  def leave
+    current_cab = CabShare.find(params[:cab])
+    current_departee = CabDeparture.find(params[:cab_departure_id])
+    current_cab.remove(current_departee)
+    
+    current_departee.cab_share = nil
+    current_departee.save!
+    
+    redirect_to current_departee
   end
 
   def destroy

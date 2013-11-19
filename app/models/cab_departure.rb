@@ -15,54 +15,56 @@ class CabDeparture < ActiveRecord::Base
   end
   
   def join(joinee)
-    
-    
-    
-    # Test to see if the party sizes are going to be a problem
     if self.party_size + joinee.party_size < 5
-      
-      # Create a new CabShare object if neither have any members
-      if self.cab_share_id.nil? && joinee.cab_share_id.nil?
+      if self.cab_share.nil?
+        # Create a new CabShare object if neither have any members
         
-        # Create new cab share for these two individuals
         if self.party_size + joinee.party_size < 5
-          new_cab_share = CabShare.new(:latitude => self.latitude, :longitude => self.longitude, :time => self.time, :party_size => self.party_size)
-  
-          if new_cab_share.add(joinee)
+          if !joinee.is_a?(CabShare)
             
-            # Cab share has been created successfully. Now add self and joinee and we're done!
-            self.cab_share_id = new_cab_share.id
-            joinee.cab_share_id = new_cab_share.id
-            
-            self.save!
-            joinee.save!
-          end
-        end
-        
-      else !self.cab_share_id.nil? || !joinee.cab_share_id.nil?  
-        
-        if self.cab_share_id.nil?
-            if joinee.cab_share_id.nil?
-              joinee.cab_share.add(self)
-              self.cab_share_id = joinee.cab_share_id
-              self.save!     
-            else
-              joinee.cab_share.add(self.cab_share)
-              
-              nolonger_need_cab = self.cab_share
-              nolonger_need_cab.cab_departures.each do |cab_departure|
-                cab_departure.cab_share_id = joinee.cab_share_id
-                cab_departure.save!
+            # Create new cab share for these two individuals
+              new_cab_share = CabShare.new(:latitude => self.latitude, :longitude => self.longitude, :time => self.time, :party_size => self.party_size)
+      
+              if new_cab_share.add(joinee)
+                
+                # Cab share has been created successfully. Now add self and joinee and we're done!
+                self.cab_share = new_cab_share
+                joinee.cab_share = new_cab_share
+                
+                self.save!
+                joinee.save!
               end
-              
-              nolonger_need_cab.delete
-            end                    
-        else
-            self.cab_share.add(joinee)
-            joinee.cab_share_id = self.cab_share_id
-            joinee.save!
+          else 
+            joinee.add(self)
+            
+            self.cab_share = joinee
+            self.save!
+          end
+        else 
+          flash[:error] = 'You have too many people for 1 cab'
         end
+      else
+        existing_cab = self.cab_share
         
+        if existing_cab.party_size + joinee.party_size < 5
+          if !joinee.is_a?(CabShare)
+            existing_cab.add(joinee)
+            joinee.cab_share = existing_cab
+            joinee.save!
+          else 
+            joinee.add(existing_cab)
+            
+            #Block!!!
+            existing_cab.cab_departures.each do |cab_departure|
+              cab_departure.cab_share = joinee
+              cab_departure.save!
+            end
+            
+            existing_cab.delete
+          end
+        else
+          flash[:error] = 'You have too many people for 1 cab'
+        end
       end
     end
   end

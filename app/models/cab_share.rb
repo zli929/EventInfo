@@ -17,4 +17,9 @@ class CabShare < ActiveRecord::Base
     self.party_size = party_size - leaver.party_size
     self.save!
   end
+  
+  def get_departure_datetime
+    utc_time = time + ActiveSupport::TimeZone['Eastern Time (US & Canada)'].utc_offset.seconds
+    utc_time.strftime('%b %d, %Y') +" at " + utc_time.strftime('%l:%M %p')    
+  end
 end

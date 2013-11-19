@@ -2,8 +2,15 @@
 <h1 class="page-header">Relevant Departures</h1>
 <div class="row-fluid">
 <aside class="span3 sidebar">
-	<h2> Your Location</h2>
-	<p id="notice"><%= notice %></p>
+	<% if !@cab_departure.cab_share.nil? %>
+		<h2>Current Cab Share</h2>
+		<strong>Participents</strong>
+			<% @cab_departure.cab_share.cab_departures.each do |participant| %>
+				<p><%= participant.user.name %></p>
+			<% end %>
+		<%= link_to 'Leave', cab_departure_leave_path(@cab_departure.id, :cab => @cab_departure.cab_share.id), :class=>"btn btn-small btn-warning", title: "Leave this cab" %>	
+	<% end %>
+	<h2>Your Location</h2>
 	<p>
 	  <strong>Leaving from</strong>
 	  	<!-- <%= @cab_departure.address %><br> -->
@@ -27,7 +34,7 @@
 	<%= link_to 'Edit', edit_cab_departure_path(@cab_departure) %> 
 </aside>
 <section class="span9 cab-content">
-	<h2>Other cabs leaving around your time</h2>
+	<h2>Folks leaving around your time</h2>
 	<!-- To be replaced with something better looking than a table -->
 	<table class="table-striped">
 	  <thead>
@@ -44,6 +51,17 @@
 	  </thead>
 	
 	  <tbody>
+	  	<% @cab_shares.each do |cab_share| %>
+	      <tr>
+	        <td><%= cab_share.cab_departures.first.user.first_name %></td>
+	        <td></td>
+	        <td><%= cab_share.get_departure_datetime %></td>
+	        <td></td>
+	        <td></td>
+	        <td><%= link_to 'Join', cab_departure_join_path(@cab_departure.id, :joinee => cab_share.id, :type => 'existing_share'), :class=>"btn btn-small btn-warning", title: "Join" %></td>
+	      </tr>
+	    <% end %>
+
 	    <% @cab_departures.each do |cab_departure| %>
 	      <tr>
 	        <td><%= cab_departure.user.first_name %></td>
@@ -52,7 +70,7 @@
 	        <td><% if cab_departure.time_buffer>0 %>-<%= cab_departure.time_buffer.round(0) %> min<% else %>-<% end %></td>
 	        <td><%= cab_departure.distance.round(2) %> miles </td>
 	        <!--<td><%= link_to 'Show', cab_departure, :class=>"btn btn-small btn-warning" %></td>-->
-	        <td><%= link_to 'Join', cab_departure_join_path(@cab_departure.id, :joinee => cab_departure.id), :class=>"btn btn-small btn-warning", title: "Join" %></td>
+	        <td><%= link_to 'Join', cab_departure_join_path(@cab_departure.id, :joinee => cab_departure.id, :type => 'new_share'), :class=>"btn btn-small btn-warning", title: "Join" %></td>
 	      </tr>
 	    <% end %>
 	  </tbody>

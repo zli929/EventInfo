@@ -8,6 +8,9 @@
   <%#= link_to "Create new post", new_advertisement_path 
   %>
   <ul class="categories-list">
+  	<% link_to new_cab_departure_path, 'Find a cab' %> 
+  </ul>
+  <ul class="categories-list">
   	<% main_categories = ['All', 'Books', 'Clothes', 'Electronics', 'Events', 'Services', 'Sports', 'Venture gear'] %>
   	<% all_categories_lower = ['all', 'books', 'clothes', 'electronics', 'events', 'missed connections', 'services', 'sports', 'venture gear', 'wanted'] %>
   	<% main_categories.each do |i|%>

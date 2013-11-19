@@ -26,6 +26,7 @@ EventInfo::Application.routes.draw do
   
   resources :cab_departures do
     get 'join' => 'cab_departures#join'
+    get 'leave' => 'cab_departures#leave'
     get 'unjoin' => 'cab_departures#unjoin'
   end
   
