@@ -13,7 +13,9 @@
 	<% end %>
 </p>
 
-<p>Just a reminder, your cab is leaving at <%= @participants.time%><% if (cab_share.address.chars.length >0 %> from <%= @participants.address%><% end %>!</p>
+<p>Just a reminder, your cab is leaving at <%= @participants.time%>
+	<% if cab_share.address.chars.length >0 %> from <%= @participants.address%>
+	<% end %>!</p>
 
 
 <p><a href="http://www.pennlist.co/">Go to my cab!</a></p>
