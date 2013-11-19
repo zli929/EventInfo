@@ -27,10 +27,10 @@
 	  <%= @cab_departure.get_departure_datetime %>
 	</p>
 	
-	<p>
-	  <strong>Able to leave early:</strong>
-	  <%= @cab_departure.time_buffer.round(0) %> minutes
-	</p>
+	<!-- <p>
+	   <strong>Able to leave </strong>
+	  <%= @cab_departure.time_buffer.round(0) %> minutes early 
+	</p> -->
 	
 	<%= link_to 'Edit', edit_cab_departure_path(@cab_departure) %> 
 </aside>
@@ -41,12 +41,12 @@
 	  <thead>
 	    <tr>
 	      <th>Name</th>
-	      <th>Willing to walk</th>
+	      <!-- <th>Willing to walk</th> -->
 	      <th>Time</th>
-	      <th>Leave early</th>
+	      <!-- <th>Leave early</th> -->
 	      <th>Distance</th>
+	      <th>Cab size</th>
 	      <th></th>
-	      <!--<th></th>-->
 	      <th></th>
 	    </tr>
 	  </thead>
@@ -55,10 +55,10 @@
 	  	<% @cab_shares.each do |cab_share| %>
 	      <tr>
 	        <td><%= cab_share.cab_departures.first.user.first_name %></td>
-	        <td></td>
+		        <!-- <td></td> -->
 	        <td><%= cab_share.get_departure_datetime %></td>
-	        <td></td>
-	        <td></td>
+	        <td><%= cab_share.distance.round(2) %> miles</td>
+	        <td><%= cab_share.party_size %></td>
 	        <td><%= link_to 'Join', cab_departure_join_path(@cab_departure.id, :joinee => cab_share.id, :type => 'existing_share'), :class=>"btn btn-small btn-warning", title: "Join" %></td>
 	      </tr>
 	    <% end %>
@@ -66,10 +66,12 @@
 	    <% @cab_departures.each do |cab_departure| %>
 	      <tr>
 	        <td><%= cab_departure.user.first_name %></td>
-	        <td><%= (cab_departure.location_buffer*8).round(0) %> block<% if cab_departure.location_buffer*8 > 1 %>s<% end %></td>
+	        <!-- <td><%= (cab_departure.location_buffer*8).round(0) %> block<% if cab_departure.location_buffer*8 > 1 %>s<% end %></td> -->
 	        <td><%= cab_departure.get_departure_datetime %></td>
-	        <td><% if cab_departure.time_buffer>0 %>-<%= cab_departure.time_buffer.round(0) %> min<% else %>-<% end %></td>
+	        <!-- <td><% if cab_departure.time_buffer>0 %>-<%= cab_departure.time_buffer.round(0) %> min<% else %>-<% end %></td> -->
 	        <td><%= cab_departure.distance.round(2) %> miles </td>
+	        <td><%= cab_departure.party_size %> </td>
+	        
 	        <!--<td><%= link_to 'Show', cab_departure, :class=>"btn btn-small btn-warning" %></td>-->
 	        <td><%= link_to 'Join', cab_departure_join_path(@cab_departure.id, :joinee => cab_departure.id, :type => 'new_share'), :class=>"btn btn-small btn-warning", title: "Join" %></td>
 	      </tr>
