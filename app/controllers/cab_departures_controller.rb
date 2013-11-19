@@ -35,15 +35,11 @@ class CabDeparturesController < ApplicationController
     
     # IF map coordinates exists and is not the default value, than use coordinates
     if params[:cab_departure][:google_coordinates] != "" && params[:cab_departure][:google_coordinates] != "(39.95023044499703, -75.17170786857605)"
-            params[:cab_departure][:address] = params[:cab_departure][:google_coordinates]
-    else
-            
-            if params[:cab_departure][:address] != ""
-               params[:cab_departure][:address] = params[:cab_departure][:address] +" Philadelphia, PA"
-            end
+       params[:cab_departure][:address] = params[:cab_departure][:google_coordinates]
+    elsif params[:cab_departure][:address] != ""
+       params[:cab_departure][:address] = params[:cab_departure][:address] +" Philadelphia, PA"
     end
     # raise params[:cab_departure][:address].to_yaml
-
     
     @cab_departure = current_user.cab_departures.build(cab_departure_params)
     @cab_departure.time = DateTime.strptime(params[:cab_departure][:prop_date] + " " + params[:cab_departure][:prop_time], "%m/%d/%Y %l:%M%p") - -18000.seconds
@@ -61,6 +57,8 @@ class CabDeparturesController < ApplicationController
 
   def update
     params[:cab_departure][:address] = params[:cab_departure][:google_coordinates]
+    
+    @cab_departure.time = DateTime.strptime(params[:cab_departure][:prop_date] + " " + params[:cab_departure][:prop_time], "%m/%d/%Y %l:%M%p") - -18000.seconds
     
     respond_to do |format|
       if @cab_departure.update(cab_departure_params)
