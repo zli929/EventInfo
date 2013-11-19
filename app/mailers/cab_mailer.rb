@@ -12,10 +12,10 @@ class CabMailer < ActionMailer::Base
     
     if status == 'joining'
       @status = true
-      mail(:to => recipients, :subject => "#{joiner.user.name}has joined your cab!", :from => "#{joiner.user.name} <#{joiner.user.email}>")
+      mail(:to => recipients, :subject => "#{joiner.user.name} has joined your cab!", :from => "#{joiner.user.name} <#{joiner.user.email}>")
     else
       @status = false
-      mail(:to => recipients, :subject => "#{joiner.user.name}has left your cab!", :from => "#{joiner.user.name} <#{joiner.user.email}>")
+      mail(:to => recipients, :subject => "#{joiner.user.name} has left your cab!", :from => "#{joiner.user.name} <#{joiner.user.email}>")
     end
   end
 end
