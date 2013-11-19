@@ -1,10 +1,23 @@
-<h3>
-  Cab Share
-</h3>
+
+  <h3>
+    Cab Share
+  </h3>
   <div class="content">
-	  <ul class="categories-list">
-	  	<%= link_to 'Find a cab', new_cab_departure_path%> 
-	  </ul>
+  <ul class="categories-list">
+  	<%= link_to 'Find a cab', new_cab_departure_path%>
+  	
+  </ul>
+  	<% current_user.cab_departures.each do |departure| %>
+  	
+  <ul class="categories-list">
+  		<% if departure.cab_share.nil? %>
+  			Departing @ <%= link_to departure.get_departure_datetime, departure %>
+  		<% else %>
+  			Departing @ <%= link_to departure.cab_share.get_departure_datetime, departure %>
+  		<% end %>
+  		</ul>
+  	<% end %> 
+  </ul>
   </div>
 <h3>
   Categories
