@@ -15,7 +15,12 @@
 	<p>
 	  <strong>Leaving from</strong>
 	  	<!-- <%= @cab_departure.address %><br> -->
+	  	
+	<% if @cab_departure.cab_share.nil? %>
 		<%= image_tag "http://maps.google.com/maps/api/staticmap?size=350x300&sensor=false&zoom=16&markers=#{@cab_departure.latitude}%2C#{@cab_departure.longitude}" %>
+	<% else %>
+		<%= image_tag "http://maps.google.com/maps/api/staticmap?size=350x300&sensor=false&zoom=16&markers=#{@cab_departure.cab_share.latitude}%2C#{@cab_departure.cab_share.longitude}" %>
+	<% end %>	
 	</p>
 	<p>
 	  <strong>Willing to walk:</strong>
