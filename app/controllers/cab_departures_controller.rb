@@ -89,7 +89,7 @@ class CabDeparturesController < ApplicationController
     current_departee.cab_share = nil
     current_departee.save!
     
-    CabMailer.cab_update('joining', current_cab, current_departee).deliver
+    CabMailer.cab_update('leaving', current_cab, current_departee).deliver
     
     redirect_to current_departee
   end
