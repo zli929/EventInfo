@@ -12,14 +12,16 @@ class CabDeparturesController < ApplicationController
       
     else
       nearby_departees = @cab_departure.nearbys(@cab_departure.location_buffer)
-      @cab_departures = nearby_departees.where('user_id != ? AND party_size < ? AND cab_share_id IS NULL AND time <= ?', 
-                    current_user.id, 5-@cab_departure.party_size, @cab_departure.time)
+      
+      @cab_departures = nearby_departees.where('user_id != ? AND party_size < ? AND cab_share_id IS NULL AND time <= ? AND destination = ?', 
+                    current_user.id, 5-@cab_departure.party_size, @cab_departure.time, @cab_departure.destination)
 
       nearby_cabs = CabShare.near(@cab_departure, @cab_departure.location_buffer)
-      @cab_shares = @cab_departure.cab_share_id.nil? ? nearby_cabs.where('party_size < ? AND time <= ?', 5-@cab_departure.party_size, @cab_departure.time) 
-                     : nearby_cabs.where('party_size < ? AND id <> ? AND time <= ?',
+      @cab_shares = @cab_departure.cab_share_id.nil? ? nearby_cabs.where('party_size < ? AND time <= ? AND destination = ?', 
+                     5-@cab_departure.party_size, @cab_departure.time, @cab_departure.destination) 
+                     : nearby_cabs.where('party_size < ? AND id <> ? AND time <= ? AND destination = ?',
                      5-@cab_departure.cab_share.party_size, @cab_departure.cab_share_id,  
-                     @cab_departure.time)  
+                     @cab_departure.time, @cab_departure.cab_share.destination)  
     end
   end
 

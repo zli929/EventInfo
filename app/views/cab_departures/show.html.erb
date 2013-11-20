@@ -22,6 +22,10 @@
 		<% end %>	
 	</p>
 	<p>
+	  <strong>Destination:</strong>
+	  <%= @cab_departure.destination %> 
+	</p>
+	<p>
 	  <strong>Willing to walk:</strong>
 	  <%= (@cab_departure.location_buffer*8).round(0) %> block<% if @cab_departure.location_buffer*8 > 1 %>s<% end %>
 	</p>

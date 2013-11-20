@@ -23,7 +23,8 @@ class CabDeparture < ActiveRecord::Base
           if !joinee.is_a?(CabShare)
             
             # Create new cab share for these two individuals
-              new_cab_share = CabShare.new(:latitude => self.latitude, :longitude => self.longitude, :time => self.time, :party_size => self.party_size)
+              new_cab_share = CabShare.new(:latitude => self.latitude, :longitude => self.longitude, :time => self.time, :party_size => self.party_size,
+                                           :destination => self.destination)
       
               if new_cab_share.add(joinee)
                 
