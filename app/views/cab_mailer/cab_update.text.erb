@@ -9,7 +9,7 @@ Hello
 <% end %>
 
 Just a reminder, your cab is leaving at <%= @participants.get_departure_datetime %>
-<% if @participants.address.chars.length >0 %> from <%= @participants.address%>
+<% if @participants.address.length >0 %> from <%= @participants.address%>
 <% end %>!
 
 Go to my cab!: http://www.pennlist.co/
