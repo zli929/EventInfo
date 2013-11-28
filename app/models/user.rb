@@ -12,6 +12,7 @@ class User < ActiveRecord::Base
           :omniauth_providers => [:facebook]
 
   attr_accessor :name
+  attr_accessor :school
 
   # Set up Validations
   validates :first_name, presence: true, length: { maximum: 50 }
@@ -35,6 +36,12 @@ class User < ActiveRecord::Base
   after_initialize :get_name 
   def get_name
     self.name = (first_name || "") + " " + (last_name || "")
+  end
+
+  after_initialize :get_school
+  def get_school
+      dummy = self.email[/@(.*)/,1]
+      self.school = dummy[0,dummy.length-10]
   end
 
   def password_validation_required?
