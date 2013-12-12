@@ -11,8 +11,7 @@ class User < ActiveRecord::Base
           :trackable, :validatable, :omniauthable, :confirmable,
           :omniauth_providers => [:facebook]
 
-  attr_accessor :name
-  attr_accessor :school
+  attr_accessor :name, :school
 
   # Set up Validations
   validates :first_name, presence: true, length: { maximum: 50 }
@@ -40,7 +39,7 @@ class User < ActiveRecord::Base
 
   after_initialize :get_school
   def get_school
-      dummy = self.email[/@(.*)/,1]
+      dummy = self.email[/@(.*)/,1] || ""
       self.school = dummy[0,dummy.length-10]
   end
 
