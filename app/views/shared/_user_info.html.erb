@@ -10,10 +10,12 @@
   	<% current_user.cab_departures.each do |departure| %>
   	
   <ul class="categories-list">
-  		<% if departure.cab_share.nil? %>
-  			Departing @ <%= link_to departure.get_departure_datetime, departure %>
-  		<% else %>
-  			Departing @ <%= link_to departure.cab_share.get_departure_datetime, departure %>
+  		<% if departure.time > Time.now %>
+	  		<% if departure.cab_share.nil? %>
+	  			Departing @ <%= link_to departure.get_departure_datetime, departure %>
+	  		<% else %>
+	  			Departing @ <%= link_to departure.cab_share.get_departure_datetime, departure %>
+	  		<% end %>
   		<% end %>
   		</ul>
   	<% end %> 
