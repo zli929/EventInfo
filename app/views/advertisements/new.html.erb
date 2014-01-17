@@ -24,9 +24,17 @@
 	</div>
 		
 	<div>
-  			<h5>Categories (separated by commas)</h5>
-  			<p class="form-hint">We recommend you use at least one of the following: books, clothes, electronics, events, personals, services, venture gear</p>
-			<%= f.autocomplete_field :tag_list, autocomplete_tag_name_advertisements_path, :min_length => 0, :"data-delimiter" => ', ' %>
+		<h5>Categories (separated by commas)</h5>
+		<p class="form-hint">We recommend you use at least one of the following: books, clothes, electronics, events, personals, services, venture gear</p>
+		<%= f.autocomplete_field :tag_list, autocomplete_tag_name_advertisements_path, :min_length => 0, :"data-delimiter" => ', ' %>
+	</div>
+	
+	<div>
+		<h5>Text Book Holding</h5>
+		<p class="form-hint">During the PennList event on Jan 22nd, we can hold your textbook for your buyer to pick up later during the day. Please note we cannot hold any money so please arrange that independently. We also cannot hold any books past the end of the event.</p>
+		
+		<%= f.check_box :hold_textbook, :class => "checkbox inline" %>
+		<%= f.label "Hold my textbook!", :class => "checkbox inline" %>
 	</div>
 	
  	<div id="blurb_section">

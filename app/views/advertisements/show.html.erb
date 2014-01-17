@@ -90,6 +90,10 @@
 	      <% unless @advertisement.tag_list.empty? %>
 	   	  	<span class="categories-label">Categories:</span> <%= raw @advertisement.tag_list.map { |t| link_to t, tag_path(t) }.join(', ') %>
 	   	  <% end %>
+	   	</div>  
+	    
+	    <div class="feed-field-item">
+	    	<span class="categories-label">Need PennList to hold textbook on Jan 22nd?:</span> <%= @advertisement.hold_textbook ? "Yes" : "No" %>
 	    </div>
 
 		<div class="feed-field-item">
